@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { calculatePath } from '@/utils/pathFinding'
 import { useWindowSize } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import Player from './Player.vue'
+import TypeIt from 'typeit'
 
 /*
     Grid management
@@ -41,7 +42,11 @@ async function changePlayerPosition(targetPosition: number) {
     npcSelected = true
   }
   if (targetPosition === playerPosition.value) {
-    if (npcSelected) inDialog.value = true
+    if (npcSelected) {
+      inDialog.value = true
+      await nextTick()
+      typeText('Hello, I am a NPC in this little world!')
+    }
     return
   }
   const path = await calculatePath(playerPosition.value, targetPosition, numRows, numCols)
@@ -50,7 +55,11 @@ async function changePlayerPosition(targetPosition: number) {
     playerPosition.value = cell
     await new Promise((resolve) => setTimeout(resolve, 150))
   }
-  if (npcSelected) inDialog.value = true
+  if (npcSelected) {
+    inDialog.value = true
+    await nextTick()
+    typeText('Hello, I am a NPC in this little world!')
+  }
   playerImage.value = 'player-front.png'
 }
 
@@ -58,14 +67,25 @@ async function changePlayerPosition(targetPosition: number) {
     NPC dialog management
 */
 const inDialog = ref(false)
+const text = ref<HTMLElement | null>(null)
 
 function closeNpcDialogBox() {
   inDialog.value = false
+}
+
+function typeText(content: string | string[]) {
+  if (text.value) {
+    new TypeIt(text.value, {
+      speed: 10,
+      strings: content,
+    }).go()
+  }
 }
 </script>
 
 <template>
   <div
+    ref="el"
     class="h-screen w-full relative grid"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
@@ -103,7 +123,7 @@ function closeNpcDialogBox() {
         >
           X
         </div>
-        <p class="text-xl">Hello, I am a NPC in this little world!</p>
+        <p ref="text" class="text-xl"></p>
       </div>
     </div>
     <Player
