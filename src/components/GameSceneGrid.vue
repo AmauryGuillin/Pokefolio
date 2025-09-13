@@ -4,6 +4,7 @@ import { useWindowSize } from '@vueuse/core'
 import { ref, computed, nextTick } from 'vue'
 import Player from './Player.vue'
 import TypeIt from 'typeit'
+import { obstacles } from '@/utils/obstacles'
 
 /*
     Grid management
@@ -27,16 +28,17 @@ const cells = computed(() => {
 /*
     Player management
 */
-const playerPosition = ref(Math.floor(cells.value.length / 2))
+const playerPosition = ref(110) //ref(Math.floor(cells.value.length / 2))
 const playerImage = ref('player-front.png')
 
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
 const playerCol = computed(() => (playerPosition.value - 1) % numCols)
 
-const npcs = ref([95])
+const npcs = ref([55])
 
 async function changePlayerPosition(targetPosition: number) {
   let npcSelected = false
+  if (obstacles.includes(targetPosition)) return
   if (npcs.value.includes(targetPosition)) {
     targetPosition--
     npcSelected = true
@@ -49,7 +51,13 @@ async function changePlayerPosition(targetPosition: number) {
     }
     return
   }
-  const path = await calculatePath(playerPosition.value, targetPosition, numRows, numCols)
+  const path = await calculatePath(
+    playerPosition.value,
+    targetPosition,
+    numRows,
+    numCols,
+    obstacles,
+  )
   playerImage.value = 'output-onlinegiftools.gif'
   for (const cell of path) {
     playerPosition.value = cell
@@ -86,7 +94,7 @@ function typeText(content: string | string[]) {
 <template>
   <div
     ref="el"
-    class="h-screen w-full relative grid"
+    class="h-screen w-full relative grid bg-[url(src/assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
     <div
@@ -100,10 +108,10 @@ function typeText(content: string | string[]) {
       @click="changePlayerPosition(cell)"
     >
       <!-- <div class="self-start w-full">{{ cell }}</div> -->
-      <!-- <div>{{ cell }}</div> -->
+      <div>{{ cell }}</div>
       <div
         v-if="npcs.includes(cell)"
-        class="absolute bg-red-500 bg-contain bg-no-repeat bg-center cursor-pointer"
+        class="absolute bg-black bg-contain bg-no-repeat bg-center cursor-pointer"
         :style="{
           width: `${cellWidth}px`,
           height: `${cellHeight}px`,
@@ -111,6 +119,14 @@ function typeText(content: string | string[]) {
       >
         PNJ
       </div>
+      <div
+        v-if="obstacles.includes(cell)"
+        class="absolute bg-red-500 bg-contain bg-no-repeat bg-center cursor-default"
+        :style="{
+          width: `${cellWidth}px`,
+          height: `${cellHeight}px`,
+        }"
+      ></div>
     </div>
     <div
       v-if="inDialog"
