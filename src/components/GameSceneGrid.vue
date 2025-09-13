@@ -8,6 +8,7 @@ import { obstacles } from '@/utils/obstacles'
 import { npcs } from '@/utils/npcs'
 import type { NPC } from '@/utils/npc'
 import { Button } from './ui/button'
+import { getImage } from '@/utils/utils'
 
 /*
     Grid management
@@ -118,10 +119,10 @@ function typeText(content: string | string[]) {
 <template>
   <div
     ref="el"
-    class="h-screen w-full relative grid bg-[url(src/assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
+    class="h-screen w-full relative grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
-    <div class="w-full z-50">
+    <div class="w-full z-50 absolute">
       <Button @click="displayObstaclesToggle">Display obstacles</Button>
     </div>
     <div
@@ -140,7 +141,7 @@ function typeText(content: string | string[]) {
         v-if="npcs.find((n) => n.position === cell) as NPC"
         class="absolute bg-contain bg-no-repeat bg-center cursor-pointer"
         :style="{
-          backgroundImage: `url(src/assets/npcs/${npcs.find((n) => n.position === cell)?.image})`,
+          backgroundImage: `url(${getImage('npcs', npcs.find((n) => n.position === cell)?.image || '')})`,
           width: `${cellWidth}px`,
           height: `${cellHeight}px`,
         }"
