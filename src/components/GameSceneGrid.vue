@@ -7,6 +7,7 @@ import TypeIt from 'typeit'
 import { obstacles } from '@/utils/obstacles'
 import { npcs } from '@/utils/npcs'
 import type { NPC } from '@/utils/npc'
+import { Button } from './ui/button'
 
 /*
     Grid management
@@ -120,8 +121,8 @@ function typeText(content: string | string[]) {
     class="h-screen w-full relative grid bg-[url(src/assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
-    <div class="w-full">
-      <button @click="displayObstaclesToggle">Display obstacles</button>
+    <div class="w-full z-50">
+      <Button @click="displayObstaclesToggle">Display obstacles</Button>
     </div>
     <div
       v-for="cell in cells"
