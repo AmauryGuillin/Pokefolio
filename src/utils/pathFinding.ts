@@ -46,7 +46,6 @@ export async function calculatePath(
       if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
         const newIndex = toIndex(newRow, newCol)
         if (!visited.has(newIndex) && !obstacles.includes(newIndex)) {
-          // <-- Ajout ici
           visited.add(newIndex)
           queue.push({ row: newRow, col: newCol, path: [...path, newIndex] })
         }

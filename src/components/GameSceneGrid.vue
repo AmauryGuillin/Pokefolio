@@ -5,6 +5,8 @@ import { ref, computed, nextTick } from 'vue'
 import Player from './Player.vue'
 import TypeIt from 'typeit'
 import { obstacles } from '@/utils/obstacles'
+import { npcs } from '@/utils/npcs'
+import type { NPC } from '@/utils/npc'
 
 /*
     Grid management
@@ -25,6 +27,16 @@ const cells = computed(() => {
   return Array.from({ length: gridSize.value.rows * gridSize.value.cols }, (_, i) => i + 1)
 })
 
+const showObstacles = ref(false)
+
+function displayObstaclesToggle() {
+  if (showObstacles.value) {
+    showObstacles.value = false
+  } else {
+    showObstacles.value = true
+  }
+}
+
 /*
     Player management
 */
@@ -34,20 +46,18 @@ const playerImage = ref('player-front.png')
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
 const playerCol = computed(() => (playerPosition.value - 1) % numCols)
 
-const npcs = ref([55])
+//const npcs = ref([55])
 
 async function changePlayerPosition(targetPosition: number) {
   let npcSelected = false
   if (obstacles.includes(targetPosition)) return
-  if (npcs.value.includes(targetPosition)) {
+  if (npcs.find((n) => n.position === targetPosition)) {
     targetPosition--
     npcSelected = true
   }
   if (targetPosition === playerPosition.value) {
     if (npcSelected) {
-      inDialog.value = true
-      await nextTick()
-      typeText('Hello, I am a NPC in this little world!')
+      launchDialog(targetPosition)
     }
     return
   }
@@ -64,9 +74,7 @@ async function changePlayerPosition(targetPosition: number) {
     await new Promise((resolve) => setTimeout(resolve, 150))
   }
   if (npcSelected) {
-    inDialog.value = true
-    await nextTick()
-    typeText('Hello, I am a NPC in this little world!')
+    launchDialog(targetPosition)
   }
   playerImage.value = 'player-front.png'
 }
@@ -76,9 +84,24 @@ async function changePlayerPosition(targetPosition: number) {
 */
 const inDialog = ref(false)
 const text = ref<HTMLElement | null>(null)
+const curretNpcName = ref<string | null>(null)
 
 function closeNpcDialogBox() {
   inDialog.value = false
+  curretNpcName.value = null
+}
+
+async function launchDialog(targetPosition: number) {
+  inDialog.value = true
+  let currentNpc = npcs.find((n) => n.position === targetPosition + 1)
+  if (currentNpc) {
+    curretNpcName.value = currentNpc.name
+    await nextTick()
+    typeText(currentNpc.dialog)
+  } else {
+    await nextTick()
+    typeText("Je n'ai rien à vous dire.")
+  }
 }
 
 function typeText(content: string | string[]) {
@@ -97,10 +120,13 @@ function typeText(content: string | string[]) {
     class="h-screen w-full relative grid bg-[url(src/assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
+    <div class="w-full">
+      <button @click="displayObstaclesToggle">Display obstacles</button>
+    </div>
     <div
       v-for="cell in cells"
       :key="cell"
-      class="transition-all flex items-center justify-center text-xs cursor-default hover:bg-slate-800 hover:rounded-full"
+      class="transition-all flex items-center justify-center text-xs cursor-default hover:bg-slate-400/50 hover:rounded-full"
       :style="{
         width: `${cellWidth}px`,
         height: `${cellHeight}px`,
@@ -108,25 +134,27 @@ function typeText(content: string | string[]) {
       @click="changePlayerPosition(cell)"
     >
       <!-- <div class="self-start w-full">{{ cell }}</div> -->
-      <div>{{ cell }}</div>
+      <!-- <div>{{ cell }}</div> -->
       <div
-        v-if="npcs.includes(cell)"
-        class="absolute bg-black bg-contain bg-no-repeat bg-center cursor-pointer"
+        v-if="npcs.find((n) => n.position === cell) as NPC"
+        class="absolute bg-contain bg-no-repeat bg-center cursor-pointer"
         :style="{
-          width: `${cellWidth}px`,
-          height: `${cellHeight}px`,
-        }"
-      >
-        PNJ
-      </div>
-      <div
-        v-if="obstacles.includes(cell)"
-        class="absolute bg-red-500 bg-contain bg-no-repeat bg-center cursor-default"
-        :style="{
+          backgroundImage: `url(src/assets/npcs/${npcs.find((n) => n.position === cell)?.image})`,
           width: `${cellWidth}px`,
           height: `${cellHeight}px`,
         }"
       ></div>
+      <div
+        v-if="obstacles.includes(cell)"
+        class="absolute bg-contain bg-no-repeat bg-center cursor-default"
+        :style="{
+          backgroundColor: `${showObstacles ? 'red' : ''}`,
+          width: `${cellWidth}px`,
+          height: `${cellHeight}px`,
+        }"
+      >
+        <!-- {{ cell }} -->
+      </div>
     </div>
     <div
       v-if="inDialog"
@@ -139,7 +167,8 @@ function typeText(content: string | string[]) {
         >
           X
         </div>
-        <p ref="text" class="text-xl"></p>
+        <p class="text-2xl font-bold">{{ curretNpcName }}</p>
+        <p ref="text" class="text-2xl"></p>
       </div>
     </div>
     <Player
