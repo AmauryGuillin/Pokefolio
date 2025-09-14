@@ -78,7 +78,7 @@ watch(
         <div class="flex-1">
           <p
             ref="text"
-            class="text-gray-800 leading-relaxed font-medium whitespace-pre-line text-xl"
+            class="text-gray-800 leading-relaxed font-medium whitespace-pre-line sm:pt-6 sm:text-base xl:text-xl text-2xl"
           ></p>
         </div>
       </div>

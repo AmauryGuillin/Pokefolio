@@ -43,7 +43,7 @@ const cells = computed(() => {
 /*
     Player management
 */
-const playerPosition = ref(209) //ref(Math.floor(cells.value.length / 2))
+const playerPosition = ref(110) //ref(Math.floor(cells.value.length / 2))
 const playerImage = ref('player-front.png')
 
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
