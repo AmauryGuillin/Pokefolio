@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { calculatePath } from '@/utils/pathFinding'
 import { useWindowSize } from '@vueuse/core'
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, type Ref } from 'vue'
 import Player from './Player.vue'
 import Obstacle from './Obstacle.vue'
 import TypeIt from 'typeit'
@@ -11,6 +11,13 @@ import type { NPC } from '@/utils/npc'
 import { Button } from './ui/button'
 import { getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
+
+/*
+    Dev tools
+*/
+
+const showObstacles = ref(false)
+const showCellNumber = ref(false)
 
 /*
     Grid management
@@ -31,16 +38,6 @@ const cells = computed(() => {
   return Array.from({ length: gridSize.value.rows * gridSize.value.cols }, (_, i) => i + 1)
 })
 
-const showObstacles = ref(false)
-
-function displayObstaclesToggle() {
-  if (showObstacles.value) {
-    showObstacles.value = false
-  } else {
-    showObstacles.value = true
-  }
-}
-
 /*
     Player management
 */
@@ -49,8 +46,6 @@ const playerImage = ref('player-front.png')
 
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
 const playerCol = computed(() => (playerPosition.value - 1) % numCols)
-
-//const npcs = ref([55])
 
 async function changePlayerPosition(targetPosition: number) {
   let npcSelected = false
@@ -124,8 +119,9 @@ function typeText(content: string | string[]) {
     class="h-screen w-full relative grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
-    <div class="w-full z-50 absolute">
-      <Button @click="displayObstaclesToggle">Display obstacles</Button>
+    <div class="w-full z-50 absolute flex gap-2">
+      <Button @click="showObstacles = !showObstacles">Display obstacles</Button>
+      <Button @click="showCellNumber = !showCellNumber">Display cell number</Button>
     </div>
     <div
       v-for="cell in cells"
@@ -137,7 +133,7 @@ function typeText(content: string | string[]) {
       }"
       @click="changePlayerPosition(cell)"
     >
-      <!-- <div class="absolute">{{ cell }}</div> -->
+      <div v-if="showCellNumber" class="absolute">{{ cell }}</div>
 
       <!-- NPCs -->
       <div v-for="(npc, index) in npcs" :key="index" class="flex justify-center items-center">
@@ -147,7 +143,9 @@ function typeText(content: string | string[]) {
       <!-- Obstacles -->
       <Obstacle
         v-if="obstacles.includes(cell)"
+        :cell="cell"
         :showObstacles="showObstacles"
+        :show-cell-number="showCellNumber"
         :cell-height="cellHeight"
         :cell-width="cellWidth"
       />

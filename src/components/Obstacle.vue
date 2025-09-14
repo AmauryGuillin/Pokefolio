@@ -1,6 +1,8 @@
 <script setup lang="ts">
 defineProps<{
+  cell: number
   showObstacles: boolean
+  showCellNumber: boolean
   cellWidth: number
   cellHeight: number
 }>()
@@ -8,13 +10,13 @@ defineProps<{
 
 <template>
   <div
-    class="absolute bg-contain bg-no-repeat bg-center cursor-default"
+    class="absolute bg-contain bg-no-repeat bg-center cursor-default flex justify-center items-center"
     :style="{
       backgroundColor: `${showObstacles ? 'red' : ''}`,
       width: `${cellWidth}px`,
       height: `${cellHeight}px`,
     }"
   >
-    <!-- {{ cell }} -->
+    <div v-if="showCellNumber">{{ cell }}</div>
   </div>
 </template>
