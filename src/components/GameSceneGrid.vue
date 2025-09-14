@@ -3,12 +3,14 @@ import { calculatePath } from '@/utils/pathFinding'
 import { useWindowSize } from '@vueuse/core'
 import { ref, computed, nextTick } from 'vue'
 import Player from './Player.vue'
+import Obstacle from './Obstacle.vue'
 import TypeIt from 'typeit'
 import { obstacles } from '@/utils/obstacles'
 import { npcs } from '@/utils/npcs'
 import type { NPC } from '@/utils/npc'
 import { Button } from './ui/button'
 import { getImage } from '@/utils/utils'
+import Npc from './Npc.vue'
 
 /*
     Grid management
@@ -135,28 +137,20 @@ function typeText(content: string | string[]) {
       }"
       @click="changePlayerPosition(cell)"
     >
-      <!-- <div class="self-start w-full">{{ cell }}</div> -->
-      <!-- <div>{{ cell }}</div> -->
-      <div
-        v-if="npcs.find((n) => n.position === cell) as NPC"
-        class="absolute bg-contain bg-no-repeat bg-center cursor-pointer"
-        :style="{
-          backgroundImage: `url(${getImage('npcs', npcs.find((n) => n.position === cell)?.image || '')})`,
-          width: `${cellWidth}px`,
-          height: `${cellHeight}px`,
-        }"
-      ></div>
-      <div
-        v-if="obstacles.includes(cell)"
-        class="absolute bg-contain bg-no-repeat bg-center cursor-default"
-        :style="{
-          backgroundColor: `${showObstacles ? 'red' : ''}`,
-          width: `${cellWidth}px`,
-          height: `${cellHeight}px`,
-        }"
-      >
-        <!-- {{ cell }} -->
+      <!-- <div class="absolute">{{ cell }}</div> -->
+
+      <!-- NPCs -->
+      <div v-for="(npc, index) in npcs" :key="index" class="flex justify-center items-center">
+        <Npc :npc="npc" :cell="cell" :cell-height="cellHeight" :cell-width="cellWidth" />
       </div>
+
+      <!-- Obstacles -->
+      <Obstacle
+        v-if="obstacles.includes(cell)"
+        :showObstacles="showObstacles"
+        :cell-height="cellHeight"
+        :cell-width="cellWidth"
+      />
     </div>
     <div
       v-if="inDialog"
