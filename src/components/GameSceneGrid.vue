@@ -11,11 +11,11 @@ import type { NPC } from '@/utils/npc'
 import { Button } from './ui/button'
 import { getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
+import DialogBox from './DialogBox.vue'
 
 /*
     Dev tools
 */
-
 const showObstacles = ref(false)
 const showCellNumber = ref(false)
 
@@ -41,7 +41,7 @@ const cells = computed(() => {
 /*
     Player management
 */
-const playerPosition = ref(110) //ref(Math.floor(cells.value.length / 2))
+const playerPosition = ref(209) //ref(Math.floor(cells.value.length / 2))
 const playerImage = ref('player-front.png')
 
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
@@ -82,33 +82,24 @@ async function changePlayerPosition(targetPosition: number) {
     NPC dialog management
 */
 const inDialog = ref(false)
-const text = ref<HTMLElement | null>(null)
 const curretNpcName = ref<string | null>(null)
+const currentNpcModel = ref<string | null>(null)
+const currentNpcDialog = ref<string | string[]>("Je n'ai rien à vous dire pour le moment.")
 
 function closeNpcDialogBox() {
   inDialog.value = false
   curretNpcName.value = null
+  currentNpcModel.value = null
+  currentNpcDialog.value = "Je n'ai rien à vous dire pour le moment."
 }
 
 async function launchDialog(targetPosition: number) {
-  inDialog.value = true
   let currentNpc = npcs.find((n) => n.position === targetPosition + 1)
   if (currentNpc) {
     curretNpcName.value = currentNpc.name
-    await nextTick()
-    typeText(currentNpc.dialog)
-  } else {
-    await nextTick()
-    typeText("Je n'ai rien à vous dire.")
-  }
-}
-
-function typeText(content: string | string[]) {
-  if (text.value) {
-    new TypeIt(text.value, {
-      speed: 10,
-      strings: content,
-    }).go()
+    currentNpcModel.value = currentNpc.model
+    currentNpcDialog.value = currentNpc.dialog
+    inDialog.value = true
   }
 }
 </script>
@@ -150,21 +141,17 @@ function typeText(content: string | string[]) {
         :cell-width="cellWidth"
       />
     </div>
-    <div
+
+    <!-- NPC Dialog -->
+    <DialogBox
       v-if="inDialog"
-      class="absolute top-[87%] left-[50%] translate-y-[-50%] translate-x-[-50%] w-4/5 h-1/5 border-4 border-gray-500 bg-white rounded-2xl text-black"
-    >
-      <div class="w-full h-full relative p-2">
-        <div
-          class="absolute top-[7%] left-[99%] translate-y-[-50%] translate-x-[-50%] text-xl font-bold hover:cursor-pointer hover:scale-110"
-          @click="closeNpcDialogBox"
-        >
-          X
-        </div>
-        <p class="text-2xl font-bold">{{ curretNpcName }}</p>
-        <p ref="text" class="text-2xl"></p>
-      </div>
-    </div>
+      :current-npc-model="currentNpcModel"
+      :curret-npc-name="curretNpcName"
+      @close:close-dialog="closeNpcDialogBox()"
+      :content="currentNpcDialog"
+    />
+
+    <!-- Player -->
     <Player
       :player-image="playerImage"
       :player-row="playerRow"
