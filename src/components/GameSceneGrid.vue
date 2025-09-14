@@ -12,6 +12,8 @@ import { Button } from './ui/button'
 import { getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
 import DialogBox from './DialogBox.vue'
+import { toast } from 'vue-sonner'
+import { Toaster } from './ui/sonner'
 
 /*
     Dev tools
@@ -48,8 +50,15 @@ const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols
 const playerCol = computed(() => (playerPosition.value - 1) % numCols)
 
 async function changePlayerPosition(targetPosition: number) {
+  if (inDialog.value) {
+    displayError('Vous ne pouvez pas bouger lorsque vous êtes en dialogue avec un PNJ.')
+    return
+  }
   let npcSelected = false
-  if (obstacles.includes(targetPosition)) return
+  if (obstacles.includes(targetPosition)) {
+    displayError('Vous ne pouvez aller ici.')
+    return
+  }
   if (npcs.find((n) => n.position === targetPosition)) {
     targetPosition--
     npcSelected = true
@@ -101,6 +110,10 @@ async function launchDialog(targetPosition: number) {
     currentNpcDialog.value = currentNpc.dialog
     inDialog.value = true
   }
+}
+
+function displayError(content: string) {
+  toast.error(content)
 }
 </script>
 
