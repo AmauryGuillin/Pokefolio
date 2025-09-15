@@ -43,16 +43,14 @@ watch(
 
 <template>
   <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 w-[90vw] h-[20vh] z-50">
-    <div class="absolute -top-[60%] left-6 w-20 h-20 z-20">
+    <div class="fixed -top-44 w-40 h-40 z-20">
       <div
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-4 border-white bg-white"
       >
         <img
           :src="getImage('npcs', currentNpcModel || '')"
           alt=""
-          fill
-          class="object-cover"
-          sizes="80px"
+          class="object-contain w-full h-full"
         />
       </div>
     </div>
