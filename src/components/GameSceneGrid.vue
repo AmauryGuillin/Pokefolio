@@ -20,6 +20,7 @@ import { Toaster } from './ui/sonner'
 */
 const showObstacles = ref(false)
 const showCellNumber = ref(false)
+const showPathing = ref<number[]>([])
 
 /*
     Grid management
@@ -69,6 +70,7 @@ async function changePlayerPosition(targetPosition: number) {
     }
     return
   }
+  console.log(targetPosition)
   const path = await calculatePath(
     playerPosition.value,
     targetPosition,
@@ -76,6 +78,7 @@ async function changePlayerPosition(targetPosition: number) {
     numCols,
     obstacles,
   )
+  showPathing.value = path
   playerImage.value = 'output-onlinegiftools.gif'
   for (const cell of path) {
     playerPosition.value = cell
@@ -153,6 +156,17 @@ function displayError(content: string) {
         :cell-height="cellHeight"
         :cell-width="cellWidth"
       />
+
+      <div v-if="showPathing.length > 0" class="flex justify-center items-center">
+        <div
+          v-if="showPathing.includes(cell)"
+          class="absolute bg-contain bg-no-repeat bg-center cursor-default flex justify-center items-center bg-green-500/50"
+          :style="{
+            width: `${cellWidth}px`,
+            height: `${cellHeight}px`,
+          }"
+        ></div>
+      </div>
     </div>
 
     <!-- NPC Dialog -->

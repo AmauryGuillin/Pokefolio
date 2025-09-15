@@ -5,7 +5,7 @@ export async function calculatePath(
   targetPosition: number,
   numRows: number,
   numCols: number,
-  obstacles: number[], // Ajoute ce paramètre
+  obstacles: number[],
 ) {
   function toCoord(pos: number) {
     return {
@@ -50,7 +50,7 @@ export async function calculatePath(
         if (
           !visited.has(newIndex) &&
           !obstacles.includes(newIndex) &&
-          npcs.find((n) => n.position)?.position !== newIndex
+          !npcs.some((n) => n.position === newIndex)
         ) {
           visited.add(newIndex)
           queue.push({ row: newRow, col: newCol, path: [...path, newIndex] })
