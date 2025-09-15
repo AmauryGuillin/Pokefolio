@@ -1,3 +1,5 @@
+import { npcs } from './npcs'
+
 export async function calculatePath(
   currentPosition: number,
   targetPosition: number,
@@ -45,7 +47,11 @@ export async function calculatePath(
 
       if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
         const newIndex = toIndex(newRow, newCol)
-        if (!visited.has(newIndex) && !obstacles.includes(newIndex)) {
+        if (
+          !visited.has(newIndex) &&
+          !obstacles.includes(newIndex) &&
+          npcs.find((n) => n.position)?.position !== newIndex
+        ) {
           visited.add(newIndex)
           queue.push({ row: newRow, col: newCol, path: [...path, newIndex] })
         }
