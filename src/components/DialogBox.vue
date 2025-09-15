@@ -45,7 +45,7 @@ watch(
   <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 w-[90vw] h-[20vh] z-50">
     <div class="fixed -top-44 w-40 h-40 z-20">
       <div
-        class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-4 border-white bg-white"
+        class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-4 border-black bg-white"
       >
         <img
           :src="getImage('npcs', currentNpcModel || '')"
