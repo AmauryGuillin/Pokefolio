@@ -44,7 +44,7 @@ const cells = computed(() => {
 /*
     Player management
 */
-const playerPosition = ref(110) //ref(Math.floor(cells.value.length / 2))
+const playerPosition = ref(110)
 const playerImage = ref('player-front.png')
 
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
@@ -55,28 +55,33 @@ async function changePlayerPosition(targetPosition: number) {
     displayError('Vous ne pouvez pas bouger lorsque vous êtes en dialogue avec un PNJ.')
     return
   }
+
   let npcSelected = false
+
   if (obstacles.includes(targetPosition)) {
     displayError('Vous ne pouvez aller ici.')
     return
   }
+
   if (npcs.find((n) => n.position === targetPosition)) {
-    targetPosition--
+    //targetPosition--
     npcSelected = true
   }
+
   if (targetPosition === playerPosition.value) {
     if (npcSelected) {
       launchDialog(targetPosition)
     }
     return
   }
-  console.log(targetPosition)
+
   const path = await calculatePath(
     playerPosition.value,
     targetPosition,
     numRows,
     numCols,
     obstacles,
+    npcSelected,
   )
   showPathing.value = path
   playerImage.value = 'output-onlinegiftools.gif'

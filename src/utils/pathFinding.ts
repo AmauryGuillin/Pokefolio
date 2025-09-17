@@ -6,6 +6,7 @@ export async function calculatePath(
   numRows: number,
   numCols: number,
   obstacles: number[],
+  npcSelected: boolean,
 ) {
   function toCoord(pos: number) {
     return {
@@ -38,6 +39,10 @@ export async function calculatePath(
     const { row, col, path } = queue.shift()!
 
     if (row === target.row && col === target.col) {
+      if (npcSelected) {
+        path.pop()
+        return path
+      }
       return path
     }
 
@@ -50,7 +55,7 @@ export async function calculatePath(
         if (
           !visited.has(newIndex) &&
           !obstacles.includes(newIndex) &&
-          !npcs.some((n) => n.position === newIndex)
+          !npcs.some((n) => n.position === newIndex && !npcSelected)
         ) {
           visited.add(newIndex)
           queue.push({ row: newRow, col: newCol, path: [...path, newIndex] })
