@@ -167,6 +167,7 @@ function displayError(content: string) {
         :cell-width="cellWidth"
       />
 
+      <!-- Pathing -->
       <div v-if="showPath" class="flex justify-center items-center">
         <div
           v-if="pathing.includes(cell)"
