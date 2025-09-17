@@ -20,7 +20,8 @@ import { Toaster } from './ui/sonner'
 */
 const showObstacles = ref(false)
 const showCellNumber = ref(false)
-const showPathing = ref<number[]>([])
+const showPath = ref(false)
+const pathing = ref<number[]>([])
 
 /*
     Grid management
@@ -83,7 +84,7 @@ async function changePlayerPosition(targetPosition: number) {
     obstacles,
     npcSelected,
   )
-  showPathing.value = path
+  pathing.value = path
   playerImage.value = 'output-onlinegiftools.gif'
   for (const cell of path) {
     playerPosition.value = cell
@@ -93,6 +94,7 @@ async function changePlayerPosition(targetPosition: number) {
     launchDialog(targetPosition)
   }
   playerImage.value = 'player-front.png'
+  pathing.value = []
 }
 
 /*
@@ -134,6 +136,7 @@ function displayError(content: string) {
     <div class="w-full z-50 absolute flex gap-2">
       <Button @click="showObstacles = !showObstacles">Display obstacles</Button>
       <Button @click="showCellNumber = !showCellNumber">Display cell number</Button>
+      <Button @click="showPath = !showPath">Display pathing</Button>
     </div>
     <div
       v-for="cell in cells"
@@ -162,9 +165,9 @@ function displayError(content: string) {
         :cell-width="cellWidth"
       />
 
-      <div v-if="showPathing.length > 0" class="flex justify-center items-center">
+      <div v-if="showPath" class="flex justify-center items-center">
         <div
-          v-if="showPathing.includes(cell)"
+          v-if="pathing.includes(cell)"
           class="absolute bg-contain bg-no-repeat bg-center cursor-default flex justify-center items-center bg-green-500/50"
           :style="{
             width: `${cellWidth}px`,
