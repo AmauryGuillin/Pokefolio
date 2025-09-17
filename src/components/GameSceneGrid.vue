@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { calculatePath } from '@/utils/pathFinding'
 import { useWindowSize } from '@vueuse/core'
-import { ref, computed, nextTick, type Ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import Player from './Player.vue'
 import Obstacle from './Obstacle.vue'
 import TypeIt from 'typeit'
@@ -13,7 +13,7 @@ import { getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
 import DialogBox from './DialogBox.vue'
 import { toast } from 'vue-sonner'
-import { Toaster } from './ui/sonner'
+import { LoaderCircle } from 'lucide-vue-next'
 
 /*
     Dev tools
@@ -22,6 +22,36 @@ const showObstacles = ref(false)
 const showCellNumber = ref(false)
 const showPath = ref(false)
 const pathing = ref<number[]>([])
+
+/*
+    Assets loading
+*/
+
+const assetsLoaded = ref(false)
+
+function preloadImages(urls: string[]) {
+  return Promise.all(
+    urls.map(
+      (url) =>
+        new Promise((resolve) => {
+          const img = new window.Image()
+          img.src = url
+          img.onload = () => resolve(true)
+          img.onerror = () => resolve(false)
+        }),
+    ),
+  )
+}
+
+onMounted(async () => {
+  const urls = [
+    getImage('player', playerImage.value),
+    ...npcs.map((npc) => getImage('npc', npc.image)),
+    ...npcs.map((npc) => getImage('npc', npc.model)),
+  ]
+  await preloadImages(urls)
+  assetsLoaded.value = true
+})
 
 /*
     Grid management
@@ -60,12 +90,11 @@ async function changePlayerPosition(targetPosition: number) {
   let npcSelected = false
 
   if (obstacles.includes(targetPosition)) {
-    displayError('Vous ne pouvez aller ici.')
+    displayError('Vous ne pouvez pas aller ici.')
     return
   }
 
   if (npcs.find((n) => n.position === targetPosition)) {
-    //targetPosition--
     npcSelected = true
   }
 
@@ -128,7 +157,12 @@ function displayError(content: string) {
 </script>
 
 <template>
+  <div v-if="!assetsLoaded" class="flex items-center justify-center flex-col gap-5 h-screen">
+    <div>Chargement...</div>
+    <LoaderCircle class="animate-spin" />
+  </div>
   <div
+    v-else
     ref="el"
     class="h-screen w-full relative grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"

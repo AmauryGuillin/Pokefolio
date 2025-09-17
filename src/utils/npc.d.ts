@@ -1,7 +1,7 @@
 export type NPC = {
   name: string
   image: string
-  model: string | null
+  model: string
   position: number
   dialog: string | string[]
 }

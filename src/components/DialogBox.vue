@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { NPC } from '@/utils/npc'
 import { getImage } from '@/utils/utils'
+import { X } from 'lucide-vue-next'
 import TypeIt from 'typeit'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
@@ -63,7 +64,7 @@ watch(
         class="absolute top-2 right-2 w-6 h-6 bg-gray-200 hover:bg-gray-300 border-2 border-gray-800 rounded flex items-center justify-center text-gray-800 font-bold text-sm z-10 transition-colors"
         aria-label="Close dialog"
       >
-        x
+        <X />
       </button>
 
       <div
