@@ -45,9 +45,13 @@ onMounted(async () => {
   const urls = [
     getImage('player', playerImage.value),
     getImage('player', 'output-onlinegiftools.gif'),
-    ...npcs.map((npc) => getImage('npc', npc.image)),
-    ...npcs.map((npc) => getImage('npc', npc.model)),
   ]
+
+  npcs.forEach((npc) => {
+    urls.push(getImage('npcs', npc.image))
+    urls.push(getImage('npcs', npc.model))
+  })
+
   await preloadImages(urls)
   assetsLoaded.value = true
 })
