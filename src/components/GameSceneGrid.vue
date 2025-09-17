@@ -46,6 +46,7 @@ function preloadImages(urls: string[]) {
 onMounted(async () => {
   const urls = [
     getImage('player', playerImage.value),
+    getImage('player', 'output-onlinegiftools.gif'),
     ...npcs.map((npc) => getImage('npc', npc.image)),
     ...npcs.map((npc) => getImage('npc', npc.model)),
   ]
