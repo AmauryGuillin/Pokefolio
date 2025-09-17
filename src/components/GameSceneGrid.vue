@@ -71,7 +71,6 @@ async function changePlayerPosition(targetPosition: number) {
 
   if (targetPosition === playerPosition.value) {
     if (npcSelected) {
-      console.log(targetPosition)
       launchDialog(targetPosition)
     }
     return
@@ -92,7 +91,6 @@ async function changePlayerPosition(targetPosition: number) {
     await new Promise((resolve) => setTimeout(resolve, 150))
   }
   if (npcSelected) {
-    console.log(targetPosition)
     launchDialog(targetPosition)
   }
   playerImage.value = 'player-front.png'
