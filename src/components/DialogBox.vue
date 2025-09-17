@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { NPC } from '@/utils/npc'
 import { getImage } from '@/utils/utils'
 import { X } from 'lucide-vue-next'
 import TypeIt from 'typeit'
@@ -9,6 +8,7 @@ const props = defineProps<{
   currentNpcModel: string | null
   curretNpcName: string | null
   content: string | string[] | undefined
+  fromIntro: boolean
 }>()
 
 const emits = defineEmits<{
@@ -19,6 +19,7 @@ const text = ref<HTMLElement | null>(null)
 
 function typeText(content: string | string[]) {
   if (text.value) {
+    text.value.innerHTML = ''
     new TypeIt(text.value, {
       speed: 10,
       strings: content,
@@ -44,7 +45,7 @@ watch(
 
 <template>
   <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 w-[90vw] h-[20vh] z-50">
-    <div class="fixed -top-44 w-40 h-40 z-20">
+    <div v-if="!fromIntro" class="fixed -top-44 w-40 h-40 z-20">
       <div
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-4 border-black bg-white"
       >
@@ -60,6 +61,7 @@ watch(
       class="relative w-full h-full bg-white border-4 border-gray-800 rounded-lg shadow-2xl overflow-hidden"
     >
       <button
+        v-if="!fromIntro"
         @click="emits('close:closeDialog')"
         class="absolute top-2 right-2 w-6 h-6 bg-gray-200 hover:bg-gray-300 border-2 border-gray-800 rounded flex items-center justify-center text-gray-800 font-bold text-sm z-10 transition-colors"
         aria-label="Close dialog"

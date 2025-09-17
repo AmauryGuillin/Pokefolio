@@ -4,10 +4,8 @@ import { useWindowSize } from '@vueuse/core'
 import { ref, computed, onMounted } from 'vue'
 import Player from './Player.vue'
 import Obstacle from './Obstacle.vue'
-import TypeIt from 'typeit'
 import { obstacles } from '@/utils/obstacles'
 import { npcs } from '@/utils/npcs'
-import type { NPC } from '@/utils/npc'
 import { Button } from './ui/button'
 import { getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
@@ -220,6 +218,7 @@ function displayError(content: string) {
       :curret-npc-name="curretNpcName"
       @close:close-dialog="closeNpcDialogBox()"
       :content="currentNpcDialog"
+      :from-intro="false"
     />
 
     <!-- Player -->
