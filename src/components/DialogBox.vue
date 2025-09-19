@@ -15,21 +15,21 @@ const emits = defineEmits<{
   (e: 'close:closeDialog'): void
 }>()
 
-const text = ref<HTMLElement | null>(null)
+//const text = ref<HTMLElement | null>(null)
 
-function typeText(content: string | string[]) {
-  if (text.value) {
-    text.value.innerHTML = ''
-    new TypeIt(text.value, {
-      speed: 10,
-      strings: content,
-    }).go()
-  }
-}
+// function typeText(content: string | string[]) {
+//   if (text.value) {
+//     text.value.innerHTML = ''
+//     new TypeIt(text.value, {
+//       speed: 10,
+//       strings: content,
+//     }).go()
+//   }
+// }
 
 onMounted(() => {
   if (props.content) {
-    typeText(props.content)
+    //typeText(props.content)
   }
 })
 
@@ -37,7 +37,7 @@ watch(
   () => props.content,
   (newContent) => {
     if (newContent) {
-      typeText(newContent)
+      //typeText(newContent)
     }
   },
 )
@@ -80,7 +80,9 @@ watch(
           <p
             ref="text"
             class="text-gray-800 leading-relaxed font-medium whitespace-pre-line sm:pt-6 sm:text-base xl:text-xl text-2xl"
-          ></p>
+          >
+            {{ content }}
+          </p>
         </div>
       </div>
 

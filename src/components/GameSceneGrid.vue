@@ -147,7 +147,7 @@ function closeNpcDialogBox() {
 async function launchDialog(targetPosition: number) {
   let currentNpc = npcs.find((n) => n.position === targetPosition)
   if (currentNpc) {
-    curretNpcName.value = currentNpc.name
+    curretNpcName.value = currentNpc.name.french
     currentNpcModel.value = currentNpc.model
     currentNpcDialog.value = currentNpc.dialog
     inDialog.value = true

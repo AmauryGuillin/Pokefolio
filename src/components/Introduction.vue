@@ -3,10 +3,13 @@ import { onMounted, ref, computed } from 'vue'
 import DialogBox from './DialogBox.vue'
 import { displayError, getImage } from '@/utils/utils'
 import { useRouter } from 'vue-router'
+import { npcs } from '@/utils/npcs'
+import type { NPC } from '@/utils/npc'
 
 const router = useRouter()
+const npc = ref<NPC>()
+const professeurName = ref<string | null>(null)
 const professeurImage = ref<string | null>(null)
-const professeurName = 'Professeur Chêne'
 const dialogContent = [
   "Bienvenue dans le monde d'Amaury. Je suis le professeur chêne. Quelle langue parles-tu ?",
   "Ok super ! Est-ce qu'une visite en musique t'interesse ?",
@@ -24,6 +27,8 @@ function next() {
 }
 
 onMounted(() => {
+  npc.value = npcs.find((npc) => npc.id === 1)
+  if (npc.value) professeurName.value = npc.value.name.french
   professeurImage.value = getImage('introduction', 'professoroak.png')
 })
 </script>

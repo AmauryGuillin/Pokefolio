@@ -1,7 +1,13 @@
+import type { Dialog } from './dialog'
+
 export type NPC = {
-  name: string
+  id: number
+  name: {
+    french: string | null
+    english: string | null
+  }
   image: string
   model: string
   position: number
-  dialog: string | string[]
+  dialog?: Dialog
 }
