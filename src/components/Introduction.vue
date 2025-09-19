@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
 import DialogBox from './DialogBox.vue'
-import { getImage } from '@/utils/utils'
+import { displayError, getImage } from '@/utils/utils'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -18,7 +18,8 @@ function next() {
   if (dialogIndex.value < dialogContent.length - 1) {
     dialogIndex.value++
   } else {
-    router.push('/game')
+    //router.push('/game')
+    displayError('fin du dialogue')
   }
 }
 
@@ -44,9 +45,9 @@ onMounted(() => {
     </div>
     <div>
       <DialogBox
-        v-if="currentDialog !== ''"
+        v-show="currentDialog !== ''"
         :current-npc-model="null"
-        :curret-npc-name="professeurName"
+        :currentNpcName="professeurName"
         :content="currentDialog"
         :from-intro="true"
         @click="next()"

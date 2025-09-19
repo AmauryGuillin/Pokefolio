@@ -11,6 +11,6 @@ import 'vue-sonner/style.css'
       <RouterLink to="/about">About</RouterLink>
     </nav> -->
   </header>
-  <Toaster position="top-right" richColors />
+  <Toaster position="top-center" richColors />
   <RouterView />
 </template>

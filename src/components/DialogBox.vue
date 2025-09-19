@@ -6,7 +6,7 @@ import { onMounted, ref, watch, type Ref } from 'vue'
 
 const props = defineProps<{
   currentNpcModel: string | null
-  curretNpcName: string | null
+  currentNpcName: string | null
   content: string | string[] | undefined
   fromIntro: boolean
 }>()
@@ -72,7 +72,7 @@ watch(
       <div
         class="absolute top-0 left-0 bg-gray-800 text-white px-4 py-1 rounded-br-lg border-r-4 border-b-4 border-gray-600"
       >
-        <span class="font-bold text-sm">{{ curretNpcName }}</span>
+        <span class="font-bold text-sm">{{ currentNpcName }}</span>
       </div>
 
       <div class="flex items-center h-full pl-8 pr-12 pb-6">

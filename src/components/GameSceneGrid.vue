@@ -7,7 +7,7 @@ import Obstacle from './Obstacle.vue'
 import { obstacles } from '@/utils/obstacles'
 import { npcs } from '@/utils/npcs'
 import { Button } from './ui/button'
-import { getImage } from '@/utils/utils'
+import { displayError, getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
 import DialogBox from './DialogBox.vue'
 import { toast } from 'vue-sonner'
@@ -153,10 +153,6 @@ async function launchDialog(targetPosition: number) {
     inDialog.value = true
   }
 }
-
-function displayError(content: string) {
-  toast.error(content)
-}
 </script>
 
 <template>
@@ -219,7 +215,7 @@ function displayError(content: string) {
     <DialogBox
       v-if="inDialog"
       :current-npc-model="currentNpcModel"
-      :curret-npc-name="curretNpcName"
+      :currentNpcName="curretNpcName"
       @close:close-dialog="closeNpcDialogBox()"
       :content="currentNpcDialog"
       :from-intro="false"
