@@ -22,7 +22,7 @@ function next() {
   if (dialogIndex.value < dialogContent.length - 1) {
     dialogIndex.value++
   } else {
-    //router.push('/game')
+    router.push('/game')
     displayError('fin du dialogue')
   }
 }
