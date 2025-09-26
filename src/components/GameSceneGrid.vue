@@ -10,7 +10,6 @@ import { Button } from './ui/button'
 import { displayError, getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
 import DialogBox from './DialogBox.vue'
-import { toast } from 'vue-sonner'
 import { LoaderCircle } from 'lucide-vue-next'
 
 /*
@@ -19,7 +18,12 @@ import { LoaderCircle } from 'lucide-vue-next'
 const showObstacles = ref(false)
 const showCellNumber = ref(false)
 const showPath = ref(false)
-const pathing = ref<number[]>([])
+const pathing = ref<
+  {
+    cell: number
+    direction: 'left' | 'right' | 'top' | 'bottom' | null
+  }[]
+>([])
 
 /*
     Assets loading
@@ -43,8 +47,14 @@ function preloadImages(urls: string[]) {
 
 onMounted(async () => {
   const urls = [
-    getImage('player', playerImage.value),
-    getImage('player', 'output-onlinegiftools.gif'),
+    getImage('player', 'player-animated-bottom.gif'),
+    getImage('player', 'player-animated-left.gif'),
+    getImage('player', 'player-animated-right.gif'),
+    getImage('player', 'player-animated-top.gif'),
+    getImage('player', 'player-idle-bottom.png'),
+    getImage('player', 'player-idle-left.png'),
+    getImage('player', 'player-idle-right.png'),
+    getImage('player', 'player-idle-top.png'),
   ]
 
   npcs.forEach((npc) => {
@@ -79,7 +89,7 @@ const cells = computed(() => {
     Player management
 */
 const playerPosition = ref(110)
-const playerImage = ref('player-front.png')
+const playerImage = ref('player-idle-bottom.png')
 
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
 const playerCol = computed(() => (playerPosition.value - 1) % numCols)
@@ -117,15 +127,19 @@ async function changePlayerPosition(targetPosition: number) {
     npcSelected,
   )
   pathing.value = path
-  playerImage.value = 'output-onlinegiftools.gif'
+  let previousDirection: 'left' | 'right' | 'top' | 'bottom' | null = null
   for (const cell of path) {
-    playerPosition.value = cell
+    if (cell.direction !== previousDirection && cell.direction != null) {
+      playerImage.value = `player-animated-${cell.direction}.gif`
+      previousDirection = cell.direction
+    }
+    playerPosition.value = cell.cell
     await new Promise((resolve) => setTimeout(resolve, 150))
   }
   if (npcSelected) {
     launchDialog(targetPosition)
   }
-  playerImage.value = 'player-front.png'
+  playerImage.value = `player-idle-${previousDirection}.png`
   pathing.value = []
 }
 
@@ -201,7 +215,7 @@ async function launchDialog(targetPosition: number) {
       <!-- Pathing -->
       <div v-if="showPath" class="flex justify-center items-center">
         <div
-          v-if="pathing.includes(cell)"
+          v-if="pathing.some((p) => p.cell === cell)"
           class="absolute bg-contain bg-no-repeat bg-center cursor-default flex justify-center items-center bg-green-500/50"
           :style="{
             width: `${cellWidth}px`,
