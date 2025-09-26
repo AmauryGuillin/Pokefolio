@@ -11,7 +11,8 @@ const npc = ref<NPC>()
 const professeurName = ref<string | null>(null)
 const professeurImage = ref<string | null>(null)
 const dialogContent = [
-  "Bienvenue dans le monde d'Amaury. Je suis le professeur chêne. Quelle langue parles-tu ?",
+  "Welcome to Amaury's world!",
+  'What language do you speak?',
   "Ok super ! Est-ce qu'une visite en musique t'interesse ?",
 ]
 const dialogIndex = ref(0)
@@ -28,7 +29,7 @@ function next() {
 
 onMounted(() => {
   npc.value = npcs.find((npc) => npc.id === 1)
-  if (npc.value) professeurName.value = npc.value.name.french
+  if (npc.value) professeurName.value = npc.value.name.english
   professeurImage.value = getImage('introduction', 'professoroak.png')
 })
 </script>

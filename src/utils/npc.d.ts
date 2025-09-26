@@ -1,5 +1,3 @@
-import type { Dialog } from './dialog'
-
 export type NPC = {
   id: number
   name: {
@@ -9,5 +7,5 @@ export type NPC = {
   image: string
   model: string
   position: number
-  dialog?: Dialog
+  dialog: string | string[]
 }

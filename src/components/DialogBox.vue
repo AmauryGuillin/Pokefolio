@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getImage } from '@/utils/utils'
-import { X } from 'lucide-vue-next'
+import { ChevronRight, X } from 'lucide-vue-next'
 import TypeIt from 'typeit'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
@@ -26,6 +26,8 @@ const emits = defineEmits<{
 //     }).go()
 //   }
 // }
+
+const selectedOption = ref<'french' | 'english'>('french')
 
 onMounted(() => {
   if (props.content) {
@@ -54,6 +56,34 @@ watch(
           alt=""
           class="object-contain w-full h-full"
         />
+      </div>
+    </div>
+    <div v-if="fromIntro" class="fixed -top-64 right-0 w-60 h-60 z-20">
+      <div
+        class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-8 border-gray-500 bg-white"
+      >
+        <div class="text-black w-full h-full grid grid-cols-2 text-3xl justify-center items-center">
+          <div class="flex flex-col gap-4 items-center justify-center mt-4">
+            <div
+              class="grid grid-cols-2 items-center cursor-pointer w-32"
+              @mouseover="selectedOption = 'french'"
+            >
+              <div class="flex justify-end w-8">
+                <ChevronRight v-show="selectedOption === 'french'" />
+              </div>
+              <span class="font-bold">French</span>
+            </div>
+            <div
+              class="grid grid-cols-2 items-center cursor-pointer w-32"
+              @mouseover="selectedOption = 'english'"
+            >
+              <div class="flex justify-end w-8">
+                <ChevronRight v-show="selectedOption === 'english'" />
+              </div>
+              <span class="font-bold">English</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
