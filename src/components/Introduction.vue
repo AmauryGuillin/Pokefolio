@@ -5,25 +5,37 @@ import { displayError, getImage } from '@/utils/utils'
 import { useRouter } from 'vue-router'
 import { npcs } from '@/utils/npcs'
 import type { NPC } from '@/utils/npc'
+import { dialogues, type Dialogue } from '@/database/dialogues'
+import { answers, type Answer } from '@/database/answers'
 
 const router = useRouter()
 const npc = ref<NPC>()
 const professeurName = ref<string | null>(null)
 const professeurImage = ref<string | null>(null)
-const dialogContent = [
-  "Welcome to Amaury's world!",
-  'What language do you speak?',
-  "Ok super ! Est-ce qu'une visite en musique t'interesse ?",
-]
-const dialogIndex = ref(0)
-const currentDialog = computed(() => dialogContent[dialogIndex.value] || '')
+
+const currentDialog = ref<Dialogue | null>(null)
+const currentAnswer = ref<Answer | null>(null)
 
 function next() {
-  if (dialogIndex.value < dialogContent.length - 1) {
-    dialogIndex.value++
+  if (currentDialog.value?.next_id) {
+    const nextDialog = dialogues.find((d) => d.id === currentDialog.value!.next_id)
+    currentDialog.value = nextDialog || null
+    loadAnswer()
   } else {
-    router.push('/game')
+    //router.push('/game')
     displayError('fin du dialogue')
+  }
+}
+
+function loadDialog() {
+  currentDialog.value = dialogues.find((d) => d.npc_id === npc.value?.id)!
+  loadAnswer()
+}
+
+function loadAnswer() {
+  if (!currentDialog.value) return
+  if (currentDialog.value.isAnswer) {
+    currentAnswer.value = answers.find((a) => a.id === currentDialog.value?.answer_id) || null
   }
 }
 
@@ -31,6 +43,7 @@ onMounted(() => {
   npc.value = npcs.find((npc) => npc.id === 1)
   if (npc.value) professeurName.value = npc.value.name.english
   professeurImage.value = getImage('introduction', 'professoroak.png')
+  loadDialog()
 })
 </script>
 
@@ -51,10 +64,12 @@ onMounted(() => {
     </div>
     <div>
       <DialogBox
-        v-show="currentDialog !== ''"
+        v-if="currentDialog"
         :current-npc-model="null"
         :currentNpcName="professeurName"
-        :content="currentDialog"
+        :content="currentDialog.content"
+        :isAnswer="currentDialog.isAnswer"
+        :answers="currentAnswer?.content"
         :from-intro="true"
         @click="next()"
       />

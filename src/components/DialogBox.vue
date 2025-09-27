@@ -7,8 +7,10 @@ import { onMounted, ref, watch, type Ref } from 'vue'
 const props = defineProps<{
   currentNpcModel: string | null
   currentNpcName: string | null
-  content: string | string[] | undefined
-  fromIntro: boolean
+  content: string | null
+  isAnswer?: boolean
+  answers?: [string, string]
+  fromIntro?: boolean
 }>()
 
 const emits = defineEmits<{
@@ -58,7 +60,7 @@ watch(
         />
       </div>
     </div>
-    <div v-if="fromIntro" class="fixed -top-64 right-0 w-60 h-60 z-20">
+    <div v-if="isAnswer" class="fixed -top-64 right-0 w-60 h-60 z-20">
       <div
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-8 border-gray-500 bg-white"
       >
@@ -71,7 +73,7 @@ watch(
               <div class="flex justify-end w-8">
                 <ChevronRight v-show="selectedOption === 'french'" />
               </div>
-              <span class="font-bold">French</span>
+              <span class="font-bold">{{ answers?.[0] || 'Choice 1' }}</span>
             </div>
             <div
               class="grid grid-cols-2 items-center cursor-pointer w-32"
@@ -80,7 +82,7 @@ watch(
               <div class="flex justify-end w-8">
                 <ChevronRight v-show="selectedOption === 'english'" />
               </div>
-              <span class="font-bold">English</span>
+              <span class="font-bold">{{ answers?.[1] || 'Choice 2' }}</span>
             </div>
           </div>
         </div>

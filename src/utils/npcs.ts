@@ -10,10 +10,7 @@ export const npcs: NPC[] = [
     image: 'npc2.png',
     model: 'npc2-model.png',
     position: 75,
-    dialog: [
-      'Ceci est un dialogue de <b>test</b>',
-      'Merci de revenir plus tard pour plus de contenu :D',
-    ],
+    dialog: 'Je suis occupé.',
   },
   {
     id: 2,
@@ -24,10 +21,7 @@ export const npcs: NPC[] = [
     image: 'npc2.png',
     model: 'npc2-model.png',
     position: 75,
-    dialog: [
-      'Ceci est un dialogue de <b>test</b>',
-      'Merci de revenir plus tard pour plus de contenu :D',
-    ],
+    dialog: 'Je suis occupé.',
   },
   {
     id: 3,
@@ -38,9 +32,6 @@ export const npcs: NPC[] = [
     image: 'npc1.png',
     model: 'npc1-model.png',
     position: 210,
-    dialog: [
-      'Ceci est un dialogue de <b>test</b>',
-      'Merci de revenir plus tard pour plus de contenu :D',
-    ],
+    dialog: 'Je suis occupé.',
   },
 ]

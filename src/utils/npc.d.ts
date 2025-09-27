@@ -7,5 +7,5 @@ export type NPC = {
   image: string
   model: string
   position: number
-  dialog: string | string[]
+  dialog: string | null
 }

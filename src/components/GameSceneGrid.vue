@@ -149,7 +149,7 @@ async function changePlayerPosition(targetPosition: number) {
 const inDialog = ref(false)
 const curretNpcName = ref<string | null>(null)
 const currentNpcModel = ref<string | null>(null)
-const currentNpcDialog = ref<string | string[]>("Je n'ai rien à vous dire pour le moment.")
+const currentNpcDialog = ref<string | null>("Je n'ai rien à vous dire pour le moment.")
 
 function closeNpcDialogBox() {
   inDialog.value = false
