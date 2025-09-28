@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref } from 'vue'
 import DialogBox from './DialogBox.vue'
 import { displayError, getImage } from '@/utils/utils'
 import { useRouter } from 'vue-router'
 import { npcs } from '@/utils/npcs'
 import type { NPC } from '@/utils/npc'
 import { dialogues, type Dialogue } from '@/database/dialogues'
-import { answers, type Answer } from '@/database/answers'
+import { type Answer } from '@/database/answers'
 import {
   getNPCDialogue,
   getNPCDialogueAnswer,
@@ -31,8 +31,8 @@ function next() {
     currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
     currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
   } else {
-    //router.push('/game')
-    displayError('fin du dialogue')
+    router.push('/game')
+    //displayError('fin du dialogue')
   }
 }
 

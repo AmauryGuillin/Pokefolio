@@ -36,8 +36,8 @@ export const dialogues: Dialogue[] = [
     id: 3,
     npc_id: 1,
     content: {
-      EN: 'You chose English!',
-      FR: 'Vous avez choisi Français !',
+      EN: "Let's continue in english then! Have a nice visit!",
+      FR: 'Continuons en français alors ! Bonne visite à vous !',
     },
     isAnswer: false,
   },
