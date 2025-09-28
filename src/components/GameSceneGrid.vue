@@ -11,6 +11,15 @@ import { displayError, getImage } from '@/utils/utils'
 import Npc from './Npc.vue'
 import DialogBox from './DialogBox.vue'
 import { LoaderCircle } from 'lucide-vue-next'
+import { dialogues, type Dialogue } from '@/database/dialogues'
+import {
+  getNPCDialogue,
+  getNPCDialogueAnswer,
+  getNPCNameByLanguage,
+  getTextToDisplayByLanguage,
+} from '@/utils/language'
+import type { NPC } from '@/utils/npc'
+import type { Answer } from '@/database/answers'
 
 /*
     Dev tools
@@ -112,9 +121,7 @@ async function changePlayerPosition(targetPosition: number) {
   }
 
   if (targetPosition === playerPosition.value) {
-    if (npcSelected) {
-      launchDialog(targetPosition)
-    }
+    if (npcSelected) launchDialog(targetPosition)
     return
   }
 
@@ -138,6 +145,11 @@ async function changePlayerPosition(targetPosition: number) {
   }
   if (npcSelected) {
     launchDialog(targetPosition)
+    if (playerImage.value.includes('animated')) {
+      let tmp = playerImage.value.replace('animated', 'idle')
+      playerImage.value = tmp.replace('.gif', '.png')
+    }
+    return
   }
   playerImage.value = `player-idle-${previousDirection}.png`
   pathing.value = []
@@ -149,22 +161,45 @@ async function changePlayerPosition(targetPosition: number) {
 const inDialog = ref(false)
 const curretNpcName = ref<string | null>(null)
 const currentNpcModel = ref<string | null>(null)
-const currentNpcDialog = ref<string | null>("Je n'ai rien à vous dire pour le moment.")
+const currentDialogue = ref<Dialogue | null>(null)
+const currentDisplay = ref<string | null | undefined>(null)
+const currentAnswer = ref<Answer | null>(null)
 
 function closeNpcDialogBox() {
   inDialog.value = false
   curretNpcName.value = null
   currentNpcModel.value = null
-  currentNpcDialog.value = "Je n'ai rien à vous dire pour le moment."
 }
 
 async function launchDialog(targetPosition: number) {
   let currentNpc = npcs.find((n) => n.position === targetPosition)
   if (currentNpc) {
-    curretNpcName.value = currentNpc.name.french
-    currentNpcModel.value = currentNpc.model
-    currentNpcDialog.value = currentNpc.dialog
     inDialog.value = true
+    curretNpcName.value = getNPCNameByLanguage(currentNpc)
+    currentNpcModel.value = currentNpc.model
+    loadDialog(currentNpc)
+  }
+}
+
+function loadDialog(npc: NPC) {
+  currentDialogue.value = getNPCDialogue(npc) || null
+  if (!currentDialogue.value) {
+    displayError('Pas de dialogue disponible.')
+    closeNpcDialogBox()
+    return
+  }
+  currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
+  currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
+}
+
+function next() {
+  if (currentDialogue.value?.next_id) {
+    const nextDialog = dialogues.find((d) => d.id === currentDialogue.value!.next_id)
+    currentDialogue.value = nextDialog || null
+    currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
+    currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
+  } else {
+    closeNpcDialogBox()
   }
 }
 </script>
@@ -227,12 +262,16 @@ async function launchDialog(targetPosition: number) {
 
     <!-- NPC Dialog -->
     <DialogBox
-      v-if="inDialog"
+      v-if="inDialog && currentDialogue"
       :current-npc-model="currentNpcModel"
       :currentNpcName="curretNpcName"
       @close:close-dialog="closeNpcDialogBox()"
-      :content="currentNpcDialog"
+      :content="currentDisplay"
+      :isAnswer="currentDialogue.isAnswer"
+      :answers="currentAnswer?.content"
+      :action="currentAnswer?.action"
       :from-intro="false"
+      @click="next()"
     />
 
     <!-- Player -->

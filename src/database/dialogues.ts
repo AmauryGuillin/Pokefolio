@@ -41,4 +41,24 @@ export const dialogues: Dialogue[] = [
     },
     isAnswer: false,
   },
+  {
+    id: 4,
+    npc_id: 2,
+    content: {
+      EN: 'none',
+      FR: 'Bonjour ! Je suis May Projay, gérante de la secton projet de la ville.',
+    },
+    isAnswer: false,
+    next_id: 5,
+  },
+  {
+    id: 5,
+    npc_id: 2,
+    content: {
+      EN: 'none',
+      FR: 'Voulez-vous que je vous explique les différents projets que la ville ait connu ?',
+    },
+    isAnswer: true,
+    answer_id: 2,
+  },
 ]

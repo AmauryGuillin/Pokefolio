@@ -3,6 +3,7 @@ import type { NPC } from './npc'
 import { answers } from '@/database/answers'
 
 export function getNPCNameByLanguage(npc: NPC | undefined): string | null {
+  //console.log(npc)
   if (!npc) return ''
 
   const userLanguage = sessionStorage.getItem('UserLanguage')

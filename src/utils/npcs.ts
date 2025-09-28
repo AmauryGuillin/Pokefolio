@@ -9,14 +9,14 @@ export const npcs: NPC[] = [
     },
     image: 'npc2.png',
     model: 'npc2-model.png',
-    position: 75,
+    position: 9999,
     dialog: 'Je suis occupé.',
   },
   {
     id: 2,
     name: {
-      french: 'Padme Amidala',
-      english: 'Padme Amidala',
+      french: 'May Projay',
+      english: 'May Projeckts',
     },
     image: 'npc2.png',
     model: 'npc2-model.png',

@@ -1,3 +1,5 @@
+import { displayError } from '@/utils/utils'
+
 export type Answer = {
   id: number
   npc_id: number
@@ -13,6 +15,13 @@ export const answers: Answer[] = [
     dialogue_id: 2,
     content: ['French', 'English'],
     action: (language?: string) => selectUserLanguage(language),
+  },
+  {
+    id: 2,
+    npc_id: 2,
+    dialogue_id: 5,
+    content: ['Oui', 'Non'],
+    action: (choice?: string) => displayError(choice!),
   },
 ]
 
