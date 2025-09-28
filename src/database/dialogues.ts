@@ -1,7 +1,10 @@
 export type Dialogue = {
   id: number
   npc_id: number
-  content: string
+  content: {
+    EN?: string | null | undefined
+    FR?: string | null | undefined
+  }
   isAnswer: boolean
   answer_id?: number
   next_id?: number
@@ -11,15 +14,31 @@ export const dialogues: Dialogue[] = [
   {
     id: 1,
     npc_id: 1,
-    content: 'Hi! Welcome to my litle world!',
+    content: {
+      EN: 'Hi! Welcome to my litle world!',
+      FR: 'Bonjour ! Bienvenue dans mon petit monde !',
+    },
     isAnswer: false,
     next_id: 2,
   },
   {
     id: 2,
     npc_id: 1,
-    content: 'To begin with, what language do you speak?',
+    content: {
+      EN: 'To begin with, what language do you speak?',
+      FR: 'Pour commencer, quel langue parlez-vous ?',
+    },
     isAnswer: true,
     answer_id: 1,
+    next_id: 3,
+  },
+  {
+    id: 3,
+    npc_id: 1,
+    content: {
+      EN: 'You chose English!',
+      FR: 'Vous avez choisi Français !',
+    },
+    isAnswer: false,
   },
 ]

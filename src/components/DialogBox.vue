@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { getImage } from '@/utils/utils'
 import { ChevronRight, X } from 'lucide-vue-next'
-import TypeIt from 'typeit'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
 const props = defineProps<{
   currentNpcModel: string | null
   currentNpcName: string | null
-  content: string | null
+  content: string | null | undefined
   isAnswer?: boolean
   answers?: [string, string]
+  action?: (a?: string) => void
   fromIntro?: boolean
 }>()
 
@@ -17,23 +17,10 @@ const emits = defineEmits<{
   (e: 'close:closeDialog'): void
 }>()
 
-//const text = ref<HTMLElement | null>(null)
-
-// function typeText(content: string | string[]) {
-//   if (text.value) {
-//     text.value.innerHTML = ''
-//     new TypeIt(text.value, {
-//       speed: 10,
-//       strings: content,
-//     }).go()
-//   }
-// }
-
 const selectedOption = ref<'french' | 'english'>('french')
 
 onMounted(() => {
   if (props.content) {
-    //typeText(props.content)
   }
 })
 
@@ -41,7 +28,6 @@ watch(
   () => props.content,
   (newContent) => {
     if (newContent) {
-      //typeText(newContent)
     }
   },
 )
@@ -65,24 +51,26 @@ watch(
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-8 border-gray-500 bg-white"
       >
         <div class="text-black w-full h-full grid grid-cols-2 text-3xl justify-center items-center">
-          <div class="flex flex-col gap-4 items-center justify-center mt-4">
+          <div v-if="answers" class="flex flex-col gap-4 items-center justify-center mt-4">
             <div
+              @click="action?.(answers[0])"
               class="grid grid-cols-2 items-center cursor-pointer w-32"
               @mouseover="selectedOption = 'french'"
             >
               <div class="flex justify-end w-8">
                 <ChevronRight v-show="selectedOption === 'french'" />
               </div>
-              <span class="font-bold">{{ answers?.[0] || 'Choice 1' }}</span>
+              <span class="font-bold">{{ answers[0] || 'Choice 1' }}</span>
             </div>
             <div
+              @click="action?.(answers[1])"
               class="grid grid-cols-2 items-center cursor-pointer w-32"
               @mouseover="selectedOption = 'english'"
             >
               <div class="flex justify-end w-8">
                 <ChevronRight v-show="selectedOption === 'english'" />
               </div>
-              <span class="font-bold">{{ answers?.[1] || 'Choice 2' }}</span>
+              <span class="font-bold">{{ answers[1] || 'Choice 2' }}</span>
             </div>
           </div>
         </div>

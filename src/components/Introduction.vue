@@ -7,20 +7,29 @@ import { npcs } from '@/utils/npcs'
 import type { NPC } from '@/utils/npc'
 import { dialogues, type Dialogue } from '@/database/dialogues'
 import { answers, type Answer } from '@/database/answers'
+import {
+  getNPCDialogue,
+  getNPCDialogueAnswer,
+  getNPCNameByLanguage,
+  getTextToDisplayByLanguage,
+} from '@/utils/language'
 
 const router = useRouter()
 const npc = ref<NPC>()
 const professeurName = ref<string | null>(null)
 const professeurImage = ref<string | null>(null)
 
-const currentDialog = ref<Dialogue | null>(null)
+const currentDialogue = ref<Dialogue | null>(null)
 const currentAnswer = ref<Answer | null>(null)
+const currentDisplay = ref<string | null | undefined>(null)
 
 function next() {
-  if (currentDialog.value?.next_id) {
-    const nextDialog = dialogues.find((d) => d.id === currentDialog.value!.next_id)
-    currentDialog.value = nextDialog || null
-    loadAnswer()
+  if (currentDialogue.value?.next_id) {
+    const nextDialog = dialogues.find((d) => d.id === currentDialogue.value!.next_id)
+    currentDialogue.value = nextDialog || null
+    professeurName.value = getNPCNameByLanguage(npc.value)
+    currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
+    currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
   } else {
     //router.push('/game')
     displayError('fin du dialogue')
@@ -28,21 +37,15 @@ function next() {
 }
 
 function loadDialog() {
-  currentDialog.value = dialogues.find((d) => d.npc_id === npc.value?.id)!
-  loadAnswer()
-}
-
-function loadAnswer() {
-  if (!currentDialog.value) return
-  if (currentDialog.value.isAnswer) {
-    currentAnswer.value = answers.find((a) => a.id === currentDialog.value?.answer_id) || null
-  }
+  currentDialogue.value = getNPCDialogue(npc.value)
+  currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
+  currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
 }
 
 onMounted(() => {
   npc.value = npcs.find((npc) => npc.id === 1)
-  if (npc.value) professeurName.value = npc.value.name.english
   professeurImage.value = getImage('introduction', 'professoroak.png')
+  professeurName.value = getNPCNameByLanguage(npc.value)
   loadDialog()
 })
 </script>
@@ -64,12 +67,13 @@ onMounted(() => {
     </div>
     <div>
       <DialogBox
-        v-if="currentDialog"
+        v-if="currentDialogue"
         :current-npc-model="null"
         :currentNpcName="professeurName"
-        :content="currentDialog.content"
-        :isAnswer="currentDialog.isAnswer"
+        :content="currentDisplay"
+        :isAnswer="currentDialogue.isAnswer"
         :answers="currentAnswer?.content"
+        :action="currentAnswer?.action"
         :from-intro="true"
         @click="next()"
       />
