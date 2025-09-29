@@ -16,7 +16,7 @@ export const npcs: NPC[] = [
     id: 2,
     name: {
       french: 'May Projay',
-      english: 'May Projeckts',
+      english: 'May Project',
     },
     image: 'npc2.png',
     model: 'npc2-model.png',

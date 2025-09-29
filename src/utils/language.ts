@@ -38,14 +38,11 @@ export function getNPCDialogueAnswer(currentDialogue: Dialogue | null) {
 export function getNPCDialogueAsnwerDisplay(currentAnswer: Answer | null) {
   if (!currentAnswer) return null
   const userLanguage = sessionStorage.getItem('UserLanguage')
-  console.log(userLanguage)
 
   if (userLanguage === 'French') {
-    console.log(currentAnswer.content.FR)
     return currentAnswer.content.FR
   }
   if (userLanguage === 'English') {
-    console.log(currentAnswer.content.EN)
     return currentAnswer.content.EN
   }
   return currentAnswer.content.EN

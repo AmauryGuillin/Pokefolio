@@ -30,7 +30,17 @@ export const answers: Answer[] = [
       EN: ['Yes', 'No'],
       FR: ['Oui', 'Non'],
     },
-    action: (choice?: string) => displayError(choice!),
+    action: (choice?: string) => continueToDofusMini(choice),
+  },
+  {
+    id: 3,
+    npc_id: 2,
+    dialogue_id: 10,
+    content: {
+      EN: ['Yes', 'No'],
+      FR: ['Oui', 'Non'],
+    },
+    action: (choice?: string) => continueToDLightSouls(choice),
   },
 ]
 
@@ -39,4 +49,18 @@ function selectUserLanguage(language: string | undefined) {
   if (language === 'Anglais') language = 'English'
   if (language === 'Français') language = 'French'
   sessionStorage.setItem('UserLanguage', language)
+}
+
+function continueToDofusMini(choice: string | undefined) {
+  if (!choice) return
+  if (choice === 'Yes' || choice === 'Oui') {
+    window.open('https://dofus-mini.vercel.app/')
+  }
+}
+
+function continueToDLightSouls(choice: string | undefined) {
+  if (!choice) return
+  if (choice === 'Yes' || choice === 'Oui') {
+    window.open('https://light-souls.laravel.cloud/')
+  }
 }
