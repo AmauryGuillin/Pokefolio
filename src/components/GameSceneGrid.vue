@@ -104,16 +104,21 @@ const playerImage = ref('player-idle-bottom.png')
 const playerRow = computed(() => Math.floor((playerPosition.value - 1) / numCols))
 const playerCol = computed(() => (playerPosition.value - 1) % numCols)
 
+const userLanguage = sessionStorage.getItem('UserLanguage')
+
 async function changePlayerPosition(targetPosition: number) {
   if (inDialog.value) {
-    displayError('Vous ne pouvez pas bouger lorsque vous êtes en dialogue avec un PNJ.')
+    if (userLanguage === 'French')
+      displayError('Vous ne pouvez pas bouger lorsque vous êtes en dialogue avec un PNJ.')
+    if (userLanguage === 'English') displayError('You cannot move when in dialog with an NPC.')
     return
   }
 
   let npcSelected = false
 
   if (obstacles.includes(targetPosition)) {
-    displayError('Vous ne pouvez pas aller ici.')
+    if (userLanguage === 'French') displayError('Vous ne pouvez pas aller ici.')
+    if (userLanguage === 'English') displayError('You cannot go there.')
     return
   }
 
@@ -186,7 +191,8 @@ async function launchDialog(targetPosition: number) {
 function loadDialog(npc: NPC) {
   currentDialogue.value = getNPCDialogue(npc) || null
   if (!currentDialogue.value) {
-    displayError('Pas de dialogue disponible.')
+    if (userLanguage === 'French') displayError('Pas de dialogue disponible.')
+    if (userLanguage === 'English') displayError('No dialog available.')
     closeNpcDialogBox()
     return
   }
