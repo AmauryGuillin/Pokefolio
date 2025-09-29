@@ -1,6 +1,6 @@
 import { dialogues, type Dialogue } from '@/database/dialogues'
 import type { NPC } from './npc'
-import { answers } from '@/database/answers'
+import { answers, type Answer } from '@/database/answers'
 
 export function getNPCNameByLanguage(npc: NPC | undefined): string | null {
   //console.log(npc)
@@ -33,4 +33,20 @@ export function getNPCDialogue(npc: NPC | undefined): Dialogue | null {
 export function getNPCDialogueAnswer(currentDialogue: Dialogue | null) {
   if (!currentDialogue || !currentDialogue.isAnswer) return null
   return answers.find((a) => a.id === currentDialogue.answer_id) || null
+}
+
+export function getNPCDialogueAsnwerDisplay(currentAnswer: Answer | null) {
+  if (!currentAnswer) return null
+  const userLanguage = sessionStorage.getItem('UserLanguage')
+  console.log(userLanguage)
+
+  if (userLanguage === 'French') {
+    console.log(currentAnswer.content.FR)
+    return currentAnswer.content.FR
+  }
+  if (userLanguage === 'English') {
+    console.log(currentAnswer.content.EN)
+    return currentAnswer.content.EN
+  }
+  return currentAnswer.content.EN
 }

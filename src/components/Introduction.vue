@@ -10,6 +10,7 @@ import { type Answer } from '@/database/answers'
 import {
   getNPCDialogue,
   getNPCDialogueAnswer,
+  getNPCDialogueAsnwerDisplay,
   getNPCNameByLanguage,
   getTextToDisplayByLanguage,
 } from '@/utils/language'
@@ -22,6 +23,7 @@ const professeurImage = ref<string | null>(null)
 const currentDialogue = ref<Dialogue | null>(null)
 const currentAnswer = ref<Answer | null>(null)
 const currentDisplay = ref<string | null | undefined>(null)
+const currentDisplayAnswer = ref<[string, string] | null | undefined>(null)
 
 function next() {
   if (currentDialogue.value?.next_id) {
@@ -30,6 +32,7 @@ function next() {
     professeurName.value = getNPCNameByLanguage(npc.value)
     currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
     currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
+    currentDisplayAnswer.value = getNPCDialogueAsnwerDisplay(currentAnswer.value)
   } else {
     router.push('/game')
     //displayError('fin du dialogue')
@@ -72,7 +75,7 @@ onMounted(() => {
         :currentNpcName="professeurName"
         :content="currentDisplay"
         :isAnswer="currentDialogue.isAnswer"
-        :answers="currentAnswer?.content"
+        :answers="currentDisplayAnswer"
         :action="currentAnswer?.action"
         :from-intro="true"
         @click="next()"

@@ -8,7 +8,7 @@ const props = defineProps<{
   currentNpcName: string | null
   content: string | null | undefined
   isAnswer?: boolean
-  answers?: [string, string]
+  answers?: [string, string] | null
   action?: (a?: string) => void
   fromIntro?: boolean
 }>()

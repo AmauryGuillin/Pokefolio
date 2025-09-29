@@ -15,6 +15,7 @@ import { dialogues, type Dialogue } from '@/database/dialogues'
 import {
   getNPCDialogue,
   getNPCDialogueAnswer,
+  getNPCDialogueAsnwerDisplay,
   getNPCNameByLanguage,
   getTextToDisplayByLanguage,
 } from '@/utils/language'
@@ -164,6 +165,7 @@ const currentNpcModel = ref<string | null>(null)
 const currentDialogue = ref<Dialogue | null>(null)
 const currentDisplay = ref<string | null | undefined>(null)
 const currentAnswer = ref<Answer | null>(null)
+const currentDisplayAnswer = ref<[string, string] | null | undefined>(null)
 
 function closeNpcDialogBox() {
   inDialog.value = false
@@ -198,6 +200,7 @@ function next() {
     currentDialogue.value = nextDialog || null
     currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
     currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
+    currentDisplayAnswer.value = getNPCDialogueAsnwerDisplay(currentAnswer.value)
   } else {
     closeNpcDialogBox()
   }
@@ -268,7 +271,7 @@ function next() {
       @close:close-dialog="closeNpcDialogBox()"
       :content="currentDisplay"
       :isAnswer="currentDialogue.isAnswer"
-      :answers="currentAnswer?.content"
+      :answers="currentDisplayAnswer"
       :action="currentAnswer?.action"
       :from-intro="false"
       @click="next()"
