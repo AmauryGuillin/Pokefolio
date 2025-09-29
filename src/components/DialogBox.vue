@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getImage } from '@/utils/utils'
-import { ChevronRight, X } from 'lucide-vue-next'
+import { getImage, sanitiseContent } from '@/utils/utils'
+import { ArrowBigDownDash, ChevronRight, X } from 'lucide-vue-next'
 import { onMounted, ref, watch, type Ref } from 'vue'
 
 const props = defineProps<{
@@ -19,8 +19,11 @@ const emits = defineEmits<{
 
 const selectedOption = ref<'french' | 'english'>('french')
 
+const content = ref<string | null | undefined>(null)
+
 onMounted(() => {
   if (props.content) {
+    content.value = sanitiseContent(props.content)
   }
 })
 
@@ -28,6 +31,7 @@ watch(
   () => props.content,
   (newContent) => {
     if (newContent) {
+      content.value = sanitiseContent(props.content)
     }
   },
 )
@@ -96,17 +100,20 @@ watch(
       </div>
 
       <div class="flex items-center h-full pl-8 pr-12 pb-6">
-        <div class="flex-1">
+        <div class="flex">
           <p
-            ref="text"
             class="text-gray-800 leading-relaxed font-medium whitespace-pre-line sm:pt-6 sm:text-base xl:text-xl text-2xl"
-          >
-            {{ content }}
+            v-html="content"
+          ></p>
+          <p v-if="!isAnswer" class="flex items-end ml-5">
+            <ArrowBigDownDash class="animate-bounce text-blue-400" />
           </p>
         </div>
       </div>
 
       <div class="absolute bottom-0 left-0 right-0 h-2 bg-blue-400"></div>
+
+      <div v-if="isAnswer" class="absolute inset-0 z-20" @click.stop></div>
     </div>
   </div>
 </template>
