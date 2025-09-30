@@ -8,6 +8,8 @@ export type Dialogue = {
   isAnswer: boolean
   answer_id?: number
   next_id?: number
+  isIllustration?: boolean | undefined
+  illustration?: string | undefined
 }
 
 export const dialogues: Dialogue[] = [
@@ -97,6 +99,8 @@ export const dialogues: Dialogue[] = [
     isAnswer: true,
     answer_id: 2,
     next_id: 8,
+    isIllustration: true,
+    illustration: 'dofus_mini.gif',
   },
   {
     id: 8,

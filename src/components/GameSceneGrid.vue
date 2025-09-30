@@ -280,6 +280,8 @@ function next() {
       :answers="currentDisplayAnswer"
       :action="currentAnswer?.action"
       :from-intro="false"
+      :is-illustration="currentDialogue.isIllustration"
+      :illustration="currentDialogue.illustration"
       @click="next()"
     />
 

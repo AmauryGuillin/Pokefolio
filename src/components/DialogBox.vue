@@ -11,6 +11,8 @@ const props = defineProps<{
   answers?: [string, string] | null
   action?: (a?: string) => void
   fromIntro?: boolean
+  isIllustration?: boolean | undefined
+  illustration?: string | undefined
 }>()
 
 const emits = defineEmits<{
@@ -39,7 +41,8 @@ watch(
 
 <template>
   <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 w-[90vw] h-[20vh] z-50">
-    <div v-if="!fromIntro" class="fixed -top-44 w-40 h-40 z-20">
+    <!-- NPC model -->
+    <div v-if="!fromIntro" class="fixed -top-44 w-40 h-40 z-20" @click.stop>
       <div
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-4 border-black bg-white"
       >
@@ -50,6 +53,23 @@ watch(
         />
       </div>
     </div>
+
+    <!-- NPC dialogue illustration picture -->
+    <div
+      v-if="!fromIntro && isIllustration"
+      class="fixed -top-[280%] left-[30%] w-1/3 h-[200%] z-20 border-4 border-black rounded-lg bg-white"
+      @click.stop
+    >
+      <div class="relative w-full h-full rounded-md overflow-hidden shadow-lg bg-white">
+        <img
+          :src="getImage('npcs', illustration || '')"
+          alt=""
+          class="object-cover w-full h-full"
+        />
+      </div>
+    </div>
+
+    <!-- NPC dialogue answer box -->
     <div v-if="isAnswer" class="fixed -top-64 right-0 w-60 h-60 z-20">
       <div
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-8 border-gray-500 bg-white"
@@ -81,6 +101,7 @@ watch(
       </div>
     </div>
 
+    <!-- NPC Dialogue box -->
     <div
       class="relative w-full h-full bg-white border-4 border-gray-800 rounded-lg shadow-2xl overflow-hidden"
     >
