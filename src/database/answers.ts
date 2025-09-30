@@ -40,7 +40,17 @@ export const answers: Answer[] = [
       EN: ['Yes', 'No'],
       FR: ['Oui', 'Non'],
     },
-    action: (choice?: string) => continueToDLightSouls(choice),
+    action: (choice?: string) => continueToLightSouls(choice),
+  },
+  {
+    id: 4,
+    npc_id: 2,
+    dialogue_id: 10,
+    content: {
+      EN: ['I hang up', 'No thanks'],
+      FR: ['Je décroche', 'Non merci'],
+    },
+    action: (choice?: string) => continueToPhone(choice),
   },
 ]
 
@@ -58,9 +68,16 @@ function continueToDofusMini(choice: string | undefined) {
   }
 }
 
-function continueToDLightSouls(choice: string | undefined) {
+function continueToLightSouls(choice: string | undefined) {
   if (!choice) return
   if (choice === 'Yes' || choice === 'Oui') {
     window.open('https://light-souls.laravel.cloud/')
+  }
+}
+
+function continueToPhone(choice: string | undefined) {
+  if (!choice) return
+  if (choice === 'I hang up' || choice === 'Je décroche') {
+    window.open('https://phone-ring.vercel.app/')
   }
 }

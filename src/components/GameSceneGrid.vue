@@ -65,6 +65,10 @@ onMounted(async () => {
     getImage('player', 'player-idle-left.png'),
     getImage('player', 'player-idle-right.png'),
     getImage('player', 'player-idle-top.png'),
+    getImage('npcs', 'dofus-mini.gif'),
+    getImage('npcs', 'light-souls.gif'),
+    getImage('npcs', 'phone.jpg'),
+    getImage('npcs', 'spiderman.jpg'),
   ]
 
   npcs.forEach((npc) => {
@@ -215,7 +219,7 @@ function next() {
 
 <template>
   <div v-if="!assetsLoaded" class="flex items-center justify-center flex-col gap-5 h-screen">
-    <div>Chargement...</div>
+    <div>Asset Loading...</div>
     <LoaderCircle class="animate-spin" />
   </div>
   <div
