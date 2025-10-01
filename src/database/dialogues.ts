@@ -91,7 +91,8 @@ export const dialogues: Dialogue[] = [
     id: 7,
     npc_id: 2,
     content: {
-      EN: '"<b>Dofus-Mini</b>" is a project aimed at recreating a mini version of Dofus (hence its name) by simulating a battle phase against a Gobball. It is a game created using <b>web technologies only</b>, and more specifically <b>React</b>.',
+      EN: `"<b>Dofus-Mini</b>" is a project aimed at recreating a mini version of Dofus (hence its name) by simulating a battle phase against a Gobball.
+      It is a game created using <b>web technologies only</b>, and more specifically <b>React</b>.`,
       FR: `"<b>Dofus-Mini</b>" est un projet ayant pour but de recréer un mini dofus (d'où son nom) en simulant une phase de combat contre un bouftou.
       C'est un jeu créé avec des technologies web <b>uniquement</b> et plus particulièrement avec <b>React</b>.`,
     },
@@ -125,7 +126,8 @@ export const dialogues: Dialogue[] = [
     id: 10,
     npc_id: 2,
     content: {
-      EN: '"<b>Light-Souls</b>" is a "Vampire Survivor-like" video game. It was developed using <b>web technologies only</b>, specifically the <b>Laravel - Inertia - Vue</b> stack.',
+      EN: `"<b>Light-Souls</b>" is a "Vampire Survivor-like" video game.
+      It was developed using <b>web technologies only</b>, specifically the <b>Laravel - Inertia - Vue</b> stack.`,
       FR: `"<b>Light-Souls</b>" est un jeu video "Vampire Survivor like".
       C'est un jeu développé avec des technologies web uniquement et plus précisément la stack <b>Laravel - Inertia - Vue</b>.`,
     },
@@ -138,7 +140,9 @@ export const dialogues: Dialogue[] = [
     id: 11,
     npc_id: 2,
     content: {
-      EN: 'The game includes: <br><b>1)</b> A dedicated website with a leaderboard to compare yourself with other players <br><b>2)</b> The game itself.',
+      EN: `The game includes: 
+      <b>1)</b> A dedicated website with a leaderboard to compare yourself with other players
+      <b>2)</b> The game itself.`,
       FR: `Le jeu contient
       <b>1)</b> Un site dédié avec un classement se comparer aux autres joueurs
       <b>2)</b> Le jeu en lui même.`,
@@ -152,7 +156,8 @@ export const dialogues: Dialogue[] = [
     id: 12,
     npc_id: 2,
     content: {
-      EN: 'Would you like to visit the website and maybe try the game? <br><b>WARNING</b>: the site may take a few seconds to load (server hibernation).',
+      EN: `Would you like to visit the website and maybe try the game? 
+      <b>WARNING</b>: the site may take a few seconds to load (server hibernation).`,
       FR: `Souhaitez-vous visiter le site et potentiellement essayer le jeu ?
       <b>ATTENTION</b> : le chargement du site peut prendre quelques seconde (mise en hibernation du serveur d'hébergement)`,
     },
@@ -199,8 +204,9 @@ export const dialogues: Dialogue[] = [
     id: 16,
     npc_id: 2,
     content: {
-      EN: 'I created an interactive portfolio using <b>Vue</b> only. Everything is handmade, no third-party libraries, and I am particularly proud of my <b>custom dialogue system</b>!',
-      FR: `J'ai créé un portfilio interactif avec <b>Vue</b> uniquement.
+      EN: `I created an interactive portfolio using <b>Vue</b> only.
+      Everything is handmade, no third-party libraries, and I am particularly proud of my <b>custom dialogue system</b>!`,
+      FR: `J'ai créé un portfolio interactif avec <b>Vue</b> uniquement.
       Tout est fait à la main, pas de librairie tiers et je suis particulièrement fier de mon système de dialogue <b>fait maison</b> !`,
     },
     isAnswer: false,
