@@ -21,6 +21,7 @@ import {
 } from '@/utils/language'
 import type { NPC } from '@/utils/npc'
 import type { Answer } from '@/database/answers'
+import { playDialogueSound, playTownMusic } from '@/utils/music'
 
 /*
     Dev tools
@@ -78,6 +79,7 @@ onMounted(async () => {
 
   await preloadImages(urls)
   assetsLoaded.value = true
+  if (sessionStorage.getItem('Sound') === 'true') playTownMusic()
 })
 
 /*
@@ -185,6 +187,7 @@ function closeNpcDialogBox() {
 async function launchDialog(targetPosition: number) {
   let currentNpc = npcs.find((n) => n.position === targetPosition)
   if (currentNpc) {
+    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
     inDialog.value = true
     curretNpcName.value = getNPCNameByLanguage(currentNpc)
     currentNpcModel.value = currentNpc.model
@@ -211,7 +214,9 @@ function next() {
     currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
     currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
     currentDisplayAnswer.value = getNPCDialogueAsnwerDisplay(currentAnswer.value)
+    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
   } else {
+    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
     closeNpcDialogBox()
   }
 }

@@ -43,6 +43,17 @@ export const dialogues: Dialogue[] = [
     id: 3,
     npc_id: 1,
     content: {
+      EN: 'Do you want some music during your journey?',
+      FR: 'Souhaitez-vous séjourner en musique ?',
+    },
+    isAnswer: true,
+    answer_id: 5,
+    next_id: 19,
+  },
+  {
+    id: 19,
+    npc_id: 1,
+    content: {
       EN: "Let's continue in <b>english</b> then. Have a nice visit!",
       FR: 'Continuons en <b>français</b> alors. Bonne visite !',
     },

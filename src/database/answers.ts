@@ -52,6 +52,16 @@ export const answers: Answer[] = [
     },
     action: (choice?: string) => continueToPhone(choice),
   },
+  {
+    id: 5,
+    npc_id: 1,
+    dialogue_id: 3,
+    content: {
+      EN: ['Yes', 'No'],
+      FR: ['Oui', 'Non'],
+    },
+    action: (choice?: string) => selectSoundChoice(choice),
+  },
 ]
 
 function selectUserLanguage(language: string | undefined) {
@@ -80,4 +90,10 @@ function continueToPhone(choice: string | undefined) {
   if (choice === 'I hang up' || choice === 'Je décroche') {
     window.open('https://phone-ring.vercel.app/')
   }
+}
+
+function selectSoundChoice(choice: string | undefined) {
+  if (!choice) return
+  if (choice === 'Oui' || choice === 'Yes') sessionStorage.setItem('Sound', 'true')
+  if (choice === 'Non' || choice === 'No') sessionStorage.setItem('Sound', 'false')
 }

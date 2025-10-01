@@ -14,6 +14,7 @@ import {
   getNPCNameByLanguage,
   getTextToDisplayByLanguage,
 } from '@/utils/language'
+import { playDialogueSound } from '@/utils/music'
 
 const router = useRouter()
 const npc = ref<NPC>()
@@ -33,7 +34,9 @@ function next() {
     currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
     currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
     currentDisplayAnswer.value = getNPCDialogueAsnwerDisplay(currentAnswer.value)
+    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
   } else {
+    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
     router.push('/game')
     //displayError('fin du dialogue')
   }
