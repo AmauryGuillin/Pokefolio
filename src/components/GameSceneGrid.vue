@@ -223,9 +223,15 @@ function next() {
 </script>
 
 <template>
-  <div v-if="!assetsLoaded" class="flex items-center justify-center flex-col gap-5 h-screen">
-    <div>Asset Loading...</div>
-    <LoaderCircle class="animate-spin" />
+  <div
+    v-if="!assetsLoaded"
+    class="flex items-center justify-center flex-col gap-5 h-screen bg-[url(../assets/loading/loading_screen2.jpg)] bg-no-repeat bg-center bg-cover"
+  >
+    <div
+      class="bg-black/50 font-bold text-2xl flex justify-center items-center gap-3 flex-col rounded-sm p-2"
+    >
+      <span>Assets Loading...</span> <LoaderCircle class="animate-spin" />
+    </div>
   </div>
   <div
     v-else
