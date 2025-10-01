@@ -187,7 +187,7 @@ function closeNpcDialogBox() {
 async function launchDialog(targetPosition: number) {
   let currentNpc = npcs.find((n) => n.position === targetPosition)
   if (currentNpc) {
-    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
+    playDialogueSound()
     inDialog.value = true
     curretNpcName.value = getNPCNameByLanguage(currentNpc)
     currentNpcModel.value = currentNpc.model
@@ -214,9 +214,9 @@ function next() {
     currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
     currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
     currentDisplayAnswer.value = getNPCDialogueAsnwerDisplay(currentAnswer.value)
-    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
+    playDialogueSound()
   } else {
-    if (sessionStorage.getItem('Sound') === 'true') playDialogueSound()
+    playDialogueSound()
     closeNpcDialogBox()
   }
 }
