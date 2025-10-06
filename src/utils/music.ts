@@ -1,6 +1,7 @@
 import { Howl } from 'howler'
 
 export function playDialogueSound() {
+  if (!sessionStorage.getItem('Sound')) return
   if (sessionStorage.getItem('Sound') === 'false') return
   const dialogueSound = new Howl({
     src: new URL(`../assets/sounds/dialogue-ping.wav`, import.meta.url).href,
@@ -10,6 +11,7 @@ export function playDialogueSound() {
 }
 
 export function playTownMusic() {
+  if (!sessionStorage.getItem('Sound')) return
   if (sessionStorage.getItem('Sound') === 'false') return
   const townMusic = new Howl({
     src: new URL(`../assets/sounds/town.mp3`, import.meta.url).href,
