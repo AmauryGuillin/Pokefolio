@@ -34,4 +34,26 @@ export const npcs: NPC[] = [
     position: 210,
     dialog: 'Je suis occupé.',
   },
+  {
+    id: 4,
+    name: {
+      french: 'Presentation',
+      english: 'Presentation',
+    },
+    image: 'presentation.png',
+    model: 'presentation-model.png',
+    position: 184,
+    dialog: 'Je suis occupé.',
+  },
+  {
+    id: 5,
+    name: {
+      french: "Curicu lom'vitae",
+      english: "Curicu lom'vitae",
+    },
+    image: 'cv.png',
+    model: 'cv-model.png',
+    position: 88,
+    dialog: 'Je suis occupé.',
+  },
 ]

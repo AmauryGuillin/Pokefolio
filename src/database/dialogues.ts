@@ -261,4 +261,22 @@ export const dialogues: Dialogue[] = [
     },
     isAnswer: false,
   },
+  {
+    id: 9999,
+    npc_id: 4,
+    content: {
+      EN: `My presentation isn't done already ! Go back later.`,
+      FR: `Ma présentation n'est pas encore terminée ! Reviens plus tard`,
+    },
+    isAnswer: false,
+  },
+  {
+    id: 99999,
+    npc_id: 5,
+    content: {
+      EN: `I'm building my CV right now ! Do not disturb me please.`,
+      FR: `Je suis en train d'écrire mon CV pour le moment. Ne me dérange pas s'il te plaît.`,
+    },
+    isAnswer: false,
+  },
 ]
