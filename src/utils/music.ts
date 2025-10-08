@@ -3,6 +3,7 @@ import { Howl } from 'howler'
 let currentMusic: Howl | null = null
 
 export function playDialogueSound() {
+  if (!sessionStorage.getItem('Sound')) return
   if (sessionStorage.getItem('Sound') === 'false') return
 
   const dialogueSound = new Howl({
@@ -13,6 +14,7 @@ export function playDialogueSound() {
 }
 
 export function playTownMusic() {
+  if (!sessionStorage.getItem('Sound')) return
   if (sessionStorage.getItem('Sound') === 'false') return
 
   if (currentMusic) {
