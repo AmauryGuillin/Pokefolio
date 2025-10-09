@@ -244,7 +244,7 @@ function next() {
   <div
     v-else
     ref="el"
-    class="h-screen w-full relative grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
+    class="h-screen w-full relative grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover font-(family-name:--font-game)"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
     <div v-if="enableDevTools" class="w-full z-50 absolute flex gap-2">

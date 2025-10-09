@@ -57,7 +57,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-black w-full h-screen text-white relative">
+  <div class="bg-black w-full h-screen text-white relative font-(family-name:--font-game)">
     <div class="relative flex justify-center items-center w-full h-full">
       <img
         v-if="professeurImage"

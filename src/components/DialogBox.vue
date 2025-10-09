@@ -74,7 +74,7 @@ watch(
       <div
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-8 border-gray-500 bg-white"
       >
-        <div class="text-black w-full h-full grid grid-cols-2 text-3xl justify-center items-center">
+        <div class="text-black w-full h-full grid grid-cols-2 text-xl justify-center items-center">
           <div v-if="answers" class="flex flex-col gap-4 items-center justify-center mt-4 ml-10">
             <div
               @click="action?.(answers[0])"
@@ -123,7 +123,7 @@ watch(
       <div class="flex items-center h-full pl-8 pr-12 pb-6">
         <div class="flex">
           <p
-            class="text-gray-800 leading-relaxed font-medium whitespace-pre-line sm:pt-6 sm:text-base xl:text-xl text-2xl"
+            class="text-gray-800 leading-relaxed font-medium whitespace-pre-line sm:pt-6 sm:text-base xl:text-lg text-xl"
             v-html="content"
           ></p>
           <p v-if="!isAnswer" class="flex items-end ml-5">
