@@ -256,7 +256,7 @@ export const dialogues: Dialogue[] = [
     id: 20,
     npc_id: 4,
     content: {
-      EN: `none`,
+      EN: `Hello! My name is <b>Amaury</b>, I am the mayor of the city. Let me introduce myself!`,
       FR: `Bonjour ! je m'appelle <b>Amaury</b>, je suis le maire de la ville. Laissez moi me présenter !`,
     },
     isAnswer: false,
@@ -266,7 +266,7 @@ export const dialogues: Dialogue[] = [
     id: 21,
     npc_id: 4,
     content: {
-      EN: `none`,
+      EN: `I am <b>French</b> and based in <b>Île-de-France</b>, in the south of Essonne.`,
       FR: `Je suis <b>français</b> et basé en <b>île-de-france</b>, dans le sud de l'Essonne.`,
     },
     isAnswer: false,
@@ -278,9 +278,10 @@ export const dialogues: Dialogue[] = [
     id: 22,
     npc_id: 4,
     content: {
-      EN: `none`,
-      FR: `J'ai 27 ans et je travaille en tant qu'ingénieur logiciel pour Capgemini le jour...
-      et suis un développeur créatif la nuit !`,
+      EN: `I am <b>27 years old</b> and I work as a <b>software engineer</b> for Capgemini during the day...
+      and I am a <b>creative developer</b> at night!`,
+      FR: `J'ai <b>27 ans</b> et je travaille en tant qu'<b>ingénieur logiciel</b> pour Capgemini le jour...
+      et suis un <b>développeur créatif</b> la nuit !`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -291,9 +292,10 @@ export const dialogues: Dialogue[] = [
     id: 23,
     npc_id: 4,
     content: {
-      EN: `none`,
-      FR: `Comme vous pouvre peux le voir, j'adore créer des petits mondes comme celui-ci, je trouve que ça donne vie à mon code.
-      ... en plus de démontrer un certain savoir faire avec les technologies web !`,
+      EN: `As you can see, I love creating little worlds like this one, I think it <b>brings my code to life</b>.
+      ... and also demonstrates some <u>skills with web technologies!</u>`,
+      FR: `Comme vous pouvre peux le voir, j'adore créer des petits mondes comme celui-ci, je trouve que ça <b>donne vie à mon code</b>.
+      ... en plus de démontrer un certain <u>savoir faire avec les technologies web !</u>`,
     },
     isAnswer: false,
     next_id: 24,
@@ -302,9 +304,10 @@ export const dialogues: Dialogue[] = [
     id: 24,
     npc_id: 4,
     content: {
-      EN: `none`,
-      FR: `Si vous voulez en savoir plus sur mon travail, je vous laisse aller parler à <b>NPJ CV</b>, elle se trouve près de l'espace recrutement.
-      C'est facile à reconnaitre, il y a une étoile sur le batiment !`,
+      EN: `If you want to know more about my work, go talk to <b>Kuniku lom'vitae</b>, she is near the recruitment area.
+      She is easy to recognize, there is a <b>star on the building</b>!`,
+      FR: `Si vous voulez en savoir plus sur mon travail, je vous laisse aller parler avec <b>Kuniku lom'vitae</b>, elle se trouve près de l'espace recrutement.
+      C'est facile à reconnaitre, il y a une <b>étoile sur le batiment</b> !`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -315,8 +318,8 @@ export const dialogues: Dialogue[] = [
     id: 25,
     npc_id: 4,
     content: {
-      EN: `none`,
-      FR: `Sinon, avant d'être développeur je faisait de la recherche fondamentale en physiologie et médecine (neurosciences et pneumologie) à l'INSERM. Ce sont d'ailleurs mes études primaires.`,
+      EN: `Otherwise, before being a developer I did <b>fundamental research in physiology and medicine</b> (neuroscience and pulmonology) at INSERM. That was actually my primary field of study.`,
+      FR: `Sinon, avant d'être développeur je faisait de la <b>recherche fondamentale en physiologie et médecine</b> (neurosciences et pneumologie) à l'INSERM. Ce sont d'ailleurs mes études primaires.`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -327,8 +330,8 @@ export const dialogues: Dialogue[] = [
     id: 26,
     npc_id: 4,
     content: {
-      EN: `none`,
-      FR: `Je serai d'ailleurs ravi de discuter avec vous de sujets médicaux ou en lien avec la physiologie humaine, et pourquoi pas vous expliquer ce souhait que j'ai eu d'acquiérir une double compétence en développement informatique.`,
+      EN: `I would also be happy to discuss medical topics or anything related to human physiology, and maybe explain why I wanted to <b>gain dual expertise in software development</b>.`,
+      FR: `Je serai d'ailleurs ravi de discuter avec vous de sujets médicaux ou en lien avec la physiologie humaine, et pourquoi pas vous expliquer ce souhait que j'ai eu d'acquiérir une <b>double compétence en développement informatique</b>.`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -339,9 +342,10 @@ export const dialogues: Dialogue[] = [
     id: 27,
     npc_id: 4,
     content: {
-      EN: `none`,
+      EN: `But let's get back to code!
+      If you want to know more about my <b>creative projects</b>, go talk to <b>May Projay</b>! She will be happy to explain them in detail.`,
       FR: `Mais revenons-en au code !
-      Si vous voulez en savoir plus sur mes projets créatifs, allez discuter avec <b>May Projay</b> ! Elle sera ravie de vous les expliquer en détails.`,
+      Si vous voulez en savoir plus sur mes <b>projets créatifs</b>, allez discuter avec <b>May Projay</b> ! Elle sera ravie de vous les expliquer en détails.`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -352,8 +356,10 @@ export const dialogues: Dialogue[] = [
     id: 28,
     npc_id: 4,
     content: {
-      EN: `none`,
-      FR: `Enfin, si vous voulez accéder à ma bibliothèque personnelle... il vous suffit d'aller discuter avec <b>PNJ GIT</b>.`,
+      EN: `Finally, if you want to access my <b>personal library</b>... just go talk to <b>Archivus Tomewell</b>.
+      He is probably wandering around his house right now, near the shop.`,
+      FR: `Enfin, si vous voulez accéder à ma <b>bibliothèque personnelle</b>... il vous suffit d'aller discuter avec <b>Bibi Hothèque</b>.
+      Il doit surement rôder autour de sa maison actuellement, près du magasin.`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -364,7 +370,7 @@ export const dialogues: Dialogue[] = [
     id: 29,
     npc_id: 4,
     content: {
-      EN: `none`,
+      EN: `I wish you a pleasant visit in my world!`,
       FR: `Je vous souhaite une agréable visite dans mon monde !`,
     },
     isAnswer: false,
@@ -382,8 +388,8 @@ export const dialogues: Dialogue[] = [
     id: 30,
     npc_id: 3,
     content: {
-      EN: 'none',
-      FR: `Bonjour, je suis Bibi Hothèque, responsable de la bibliothèque personnelle du maire.`,
+      EN: `Hello, I am <b>Archivus Tomewell</b>, in charge of the mayor's personal library.`,
+      FR: `Bonjour, je suis <b>Bibi Hothèque</b>, responsable de la bibliothèque personnelle du maire.`,
     },
     isAnswer: false,
     next_id: 31,
@@ -392,7 +398,7 @@ export const dialogues: Dialogue[] = [
     id: 31,
     npc_id: 3,
     content: {
-      EN: 'none',
+      EN: `Would you like to consult the library?`,
       FR: `Voulez-vous consulter la bibliothèque ?`,
     },
     isAnswer: true,
@@ -403,9 +409,10 @@ export const dialogues: Dialogue[] = [
     id: 32,
     npc_id: 3,
     content: {
-      EN: 'none',
+      EN: `Enjoy your stay with us!
+      Feel free to talk to the other inhabitants of the city!`,
       FR: `Bon séjour parmis nous !
-      N'hésitez pas à aller discuter avec les autres membres de la villes !`,
+      N'hésitez pas à aller discuter avec les autres habitants de la villes !`,
     },
     isAnswer: false,
   },
@@ -422,8 +429,8 @@ export const dialogues: Dialogue[] = [
     id: 33,
     npc_id: 5,
     content: {
-      EN: `none`,
-      FR: `Bonjour, je suis Kuniku lom'vitae, manageuse du maire de la ville.`,
+      EN: `Hello, I am <b>Kuniku lom'vitae</b>, the mayor's manager.`,
+      FR: `Bonjour, je suis <b>Kuniku lom'vitae</b>, manageuse du maire de la ville.`,
     },
     isAnswer: false,
     next_id: 34,
@@ -432,8 +439,8 @@ export const dialogues: Dialogue[] = [
     id: 34,
     npc_id: 5,
     content: {
-      EN: `none`,
-      FR: `Je m'occupe principalement de la gestion de sa carrière profesionnelle.`,
+      EN: `I mainly take care of managing his <b>professional career</b>.`,
+      FR: `Je m'occupe principalement de la gestion de sa <b>carrière profesionnelle</b>.`,
     },
     isAnswer: false,
     next_id: 35,
@@ -442,7 +449,7 @@ export const dialogues: Dialogue[] = [
     id: 35,
     npc_id: 5,
     content: {
-      EN: `none`,
+      EN: `Would you like to see the mayor's resume?`,
       FR: `Désirez-vous consulter le CV du maire ?`,
     },
     isAnswer: true,
@@ -453,9 +460,10 @@ export const dialogues: Dialogue[] = [
     id: 36,
     npc_id: 5,
     content: {
-      EN: `none`,
+      EN: `That's all from me!
+      Feel free to talk to the other inhabitants of the city, they probably have a lot to tell you!`,
       FR: `Voilà pour moi !
-      N'hésitez pas à discuter avec les autres habitant de la ville, ils ont probablement beaucoup à vous raconter !`,
+      N'hésitez pas à discuter avec les autres habitants de la ville, ils ont probablement beaucoup à vous raconter !`,
     },
     isAnswer: false,
   },

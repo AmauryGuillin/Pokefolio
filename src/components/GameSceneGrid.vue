@@ -71,6 +71,13 @@ onMounted(async () => {
     getImage('npcs', 'light-souls.gif'),
     getImage('npcs', 'phone.jpg'),
     getImage('npcs', 'spiderman.jpg'),
+    getImage('npcs', 'code.gif'),
+    getImage('npcs', 'cvgirl.png'),
+    getImage('npcs', 'france.png'),
+    getImage('npcs', 'gitmaster.png'),
+    getImage('npcs', 'mayprojay.png'),
+    getImage('npcs', 'neurosciences.jpg'),
+    getImage('npcs', 'science.jpg'),
   ]
 
   npcs.forEach((npc) => {
