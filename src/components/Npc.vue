@@ -11,6 +11,8 @@ const props = defineProps<{
 }>()
 
 const hover = ref(false)
+const npcName =
+  localStorage.getItem('UserLanguage') === 'French' ? props.npc.name.french : props.npc.name.english
 </script>
 
 <template>
@@ -29,7 +31,7 @@ const hover = ref(false)
       v-if="hover"
       class="absolute -top-7 bg-black/70 font-bold p-2 whitespace-nowrap overflow-visible z-10"
     >
-      {{ npc.name.french }}
+      {{ npcName }}
     </div>
   </div>
 </template>
