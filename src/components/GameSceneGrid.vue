@@ -26,6 +26,7 @@ import { playDialogueSound, playTownMusic } from '@/utils/music'
 /*
     Dev tools
 */
+const enableDevTools = false
 const showObstacles = ref(false)
 const showCellNumber = ref(false)
 const showPath = ref(false)
@@ -239,7 +240,7 @@ function next() {
     class="h-screen w-full relative grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
-    <div class="w-full z-50 absolute flex gap-2">
+    <div v-if="enableDevTools" class="w-full z-50 absolute flex gap-2">
       <Button @click="showObstacles = !showObstacles">Display obstacles</Button>
       <Button @click="showCellNumber = !showCellNumber">Display cell number</Button>
       <Button @click="showPath = !showPath">Display pathing</Button>
@@ -247,7 +248,7 @@ function next() {
     <div
       v-for="cell in cells"
       :key="cell"
-      class="transition-all flex items-center justify-center text-xs cursor-default hover:bg-slate-400/50 hover:rounded-full"
+      class="transition-all flex items-center justify-center text-xs cursor-default hover:bg-white/30 hover:rounded-full"
       :style="{
         width: `${cellWidth}px`,
         height: `${cellHeight}px`,
