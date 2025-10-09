@@ -415,16 +415,52 @@ export const dialogues: Dialogue[] = [
   ===============================*/
 
   /*===============================
-    --  Autres NPC BEGIN --
+    --  Kuniku lom'vitae BEGIN --
   ===============================*/
 
   {
-    id: 99999,
+    id: 33,
     npc_id: 5,
     content: {
-      EN: `I'm building my CV right now ! Do not disturb me please.`,
-      FR: `Je suis en train d'écrire mon CV pour le moment. Ne me dérange pas s'il te plaît.`,
+      EN: `none`,
+      FR: `Bonjour, je suis Kuniku lom'vitae, manageuse du maire de la ville.`,
+    },
+    isAnswer: false,
+    next_id: 34,
+  },
+  {
+    id: 34,
+    npc_id: 5,
+    content: {
+      EN: `none`,
+      FR: `Je m'occupe principalement de la gestion de sa carrière profesionnelle.`,
+    },
+    isAnswer: false,
+    next_id: 35,
+  },
+  {
+    id: 35,
+    npc_id: 5,
+    content: {
+      EN: `none`,
+      FR: `Désirez-vous consulter le CV du maire ?`,
+    },
+    isAnswer: true,
+    answer_id: 7,
+    next_id: 36,
+  },
+  {
+    id: 36,
+    npc_id: 5,
+    content: {
+      EN: `none`,
+      FR: `Voilà pour moi !
+      N'hésitez pas à discuter avec les autres habitant de la ville, ils ont probablement beaucoup à vous raconter !`,
     },
     isAnswer: false,
   },
+
+  /*===============================
+    --  Kuniku lom'vitae END --
+  ===============================*/
 ]

@@ -72,6 +72,16 @@ export const answers: Answer[] = [
     },
     action: (choice?: string) => continueToGitHub(choice),
   },
+  {
+    id: 7,
+    npc_id: 5,
+    dialogue_id: 35,
+    content: {
+      EN: ['Yes', 'No'],
+      FR: ['Oui', 'Non'],
+    },
+    action: (choice?: string) => continueToResume(choice),
+  },
 ]
 
 function selectUserLanguage(language: string | undefined) {
@@ -112,5 +122,13 @@ function continueToGitHub(choice: string | undefined) {
   if (!choice) return
   if (choice === 'Yes' || choice === 'Oui') {
     window.open('https://github.com/AmauryGuillin/')
+  }
+}
+
+function continueToResume(choice: string | undefined) {
+  if (!choice) return
+  if (choice === 'Yes' || choice === 'Oui') {
+    const pdfUrl = new URL('@/assets/cv/Amaury_Guillin_2025.pdf', import.meta.url).href
+    window.open(pdfUrl, '_blank')
   }
 }

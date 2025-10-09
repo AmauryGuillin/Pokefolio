@@ -48,8 +48,8 @@ export const npcs: NPC[] = [
   {
     id: 5,
     name: {
-      french: "Curicu lom'vitae",
-      english: "Curicu lom'vitae",
+      french: "Kuniku lom'vitae",
+      english: "Kuniku lom'vitae",
     },
     image: 'cv.png',
     model: 'cv-model.png',
