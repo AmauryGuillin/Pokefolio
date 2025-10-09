@@ -54,8 +54,8 @@ export const dialogues: Dialogue[] = [
     id: 19,
     npc_id: 1,
     content: {
-      EN: "Let's continue in <b>english</b> then. Have a nice visit!",
-      FR: 'Continuons en <b>français</b> alors. Bonne visite !',
+      EN: "Let's continue in <b>English</b> then. Have a nice visit!",
+      FR: 'Continuons en <b>Français</b> alors. Bonne visite !',
     },
     isAnswer: false,
   },
@@ -72,7 +72,7 @@ export const dialogues: Dialogue[] = [
     id: 4,
     npc_id: 2,
     content: {
-      EN: "Hello! I am <b>May Projay</b>, manager of the city's project department.",
+      EN: "Hello! I am <b>May Project</b>, manager of the city's project department.",
       FR: 'Bonjour ! Je suis <b>May Projay</b>, gérante de la section projet de la ville.',
     },
     isAnswer: false,
@@ -83,7 +83,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 2,
     content: {
       EN: 'I will present to you the different <b>projects</b> that have passed through my hands.',
-      FR: 'Je vais vous présenter les différents <b>projets</b> qui sont passé entre mes mains.',
+      FR: 'Je vais vous présenter les différents <b>projets</b> qui sont passés entre mes mains.',
     },
     isAnswer: false,
     next_id: 6,
@@ -104,7 +104,7 @@ export const dialogues: Dialogue[] = [
     content: {
       EN: `"<b>Dofus-Mini</b>" is a project aimed at recreating a mini version of Dofus (hence its name) by simulating a battle phase against a Gobball.
       It is a game created using <b>web technologies only</b>, and more specifically <b>React</b>.`,
-      FR: `"<b>Dofus-Mini</b>" est un projet ayant pour but de recréer un mini dofus (d'où son nom) en simulant une phase de combat contre un bouftou.
+      FR: `"<b>Dofus-Mini</b>" est un projet ayant pour but de recréer un mini Dofus (d'où son nom) en simulant une phase de combat contre un bouftou.
       C'est un jeu créé avec des technologies web <b>uniquement</b> et plus particulièrement avec <b>React</b>.`,
     },
     isAnswer: false,
@@ -139,7 +139,7 @@ export const dialogues: Dialogue[] = [
     content: {
       EN: `"<b>Light-Souls</b>" is a "Vampire Survivor-like" video game.
       It was developed using <b>web technologies only</b>, specifically the <b>Laravel - Inertia - Vue</b> stack.`,
-      FR: `"<b>Light-Souls</b>" est un jeu video "Vampire Survivor like".
+      FR: `"<b>Light-Souls</b>" est un jeu vidéo "Vampire Survivor like".
       C'est un jeu développé avec des technologies web uniquement et plus précisément la stack <b>Laravel - Inertia - Vue</b>.`,
     },
     isAnswer: false,
@@ -156,7 +156,7 @@ export const dialogues: Dialogue[] = [
       <b>2)</b> The game itself.`,
       FR: `Le jeu contient
       <b>1)</b> Un site dédié avec un classement se comparer aux autres joueurs
-      <b>2)</b> Le jeu en lui même.`,
+      <b>2)</b> Le jeu en lui-même.`,
     },
     isAnswer: false,
     next_id: 12,
@@ -170,7 +170,7 @@ export const dialogues: Dialogue[] = [
       EN: `Would you like to visit the website and maybe try the game? 
       <b>WARNING</b>: the site may take a few seconds to load (server hibernation).`,
       FR: `Souhaitez-vous visiter le site et potentiellement essayer le jeu ?
-      <b>ATTENTION</b> : le chargement du site peut prendre quelques seconde (mise en hibernation du serveur d'hébergement)`,
+      <b>ATTENTION</b> : le chargement du site peut prendre quelques secondes (mise en hibernation du serveur d'hébergement)`,
     },
     isAnswer: true,
     answer_id: 3,
@@ -181,7 +181,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 2,
     content: {
       EN: "The third project is simple: it's a phone call. Will you take the risk of picking up?",
-      FR: `Le troisième projet est simple, c'est un appel téléphonique. Allez vous prendre le risque de décrocher ?`,
+      FR: `Le troisième projet est simple, c'est un appel téléphonique. Allez-vous prendre le risque de décrocher ?`,
     },
     isAnswer: true,
     answer_id: 4,
@@ -204,7 +204,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 2,
     content: {
       EN: 'Well, you are currently playing with it!',
-      FR: `Et bien, vous êtes actuellement en train de jouer avec !`,
+      FR: `Eh bien, vous êtes actuellement en train de jouer avec !`,
     },
     isAnswer: false,
     next_id: 16,
@@ -218,7 +218,7 @@ export const dialogues: Dialogue[] = [
       EN: `I created an interactive portfolio using <b>Vue</b> only.
       Everything is handmade, no third-party libraries, and I am particularly proud of my <b>custom dialogue system</b>!`,
       FR: `J'ai créé un portfolio interactif avec <b>Vue</b> uniquement.
-      Tout est fait à la main, pas de librairie tiers et je suis particulièrement fier de mon système de dialogue <b>fait maison</b> !`,
+      Tout est fait à la main, pas de librairie tierce et je suis particulièrement fier de mon système de dialogue <b>fait maison</b> !`,
     },
     isAnswer: false,
     next_id: 17,
@@ -238,8 +238,8 @@ export const dialogues: Dialogue[] = [
     npc_id: 2,
     content: {
       EN: 'Continue your visit around the city, there are surely more things to discover! See you soon.',
-      FR: `Continuer votre visite de la ville, il vous reste sûrement d'autres choses à découvrir !
-      A bientôt.`,
+      FR: `Continuez votre visite de la ville, il vous reste sûrement d'autres choses à découvrir !
+      À bientôt.`,
     },
     isAnswer: false,
   },
@@ -257,7 +257,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 4,
     content: {
       EN: `Hello! My name is <b>Amaury</b>, I am the mayor of the city. Let me introduce myself!`,
-      FR: `Bonjour ! je m'appelle <b>Amaury</b>, je suis le maire de la ville. Laissez moi me présenter !`,
+      FR: `Bonjour ! je m'appelle <b>Amaury</b>, je suis le maire de la ville. Laissez-moi me présenter !`,
     },
     isAnswer: false,
     next_id: 21,
@@ -267,7 +267,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 4,
     content: {
       EN: `I am <b>French</b> and based in <b>Île-de-France</b>, in the south of Essonne.`,
-      FR: `Je suis <b>français</b> et basé en <b>île-de-france</b>, dans le sud de l'Essonne.`,
+      FR: `Je suis <b>Français</b> et basé en <b>Île-de-France</b>, dans le sud de l'Essonne.`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -294,7 +294,7 @@ export const dialogues: Dialogue[] = [
     content: {
       EN: `As you can see, I love creating little worlds like this one, I think it <b>brings my code to life</b>.
       ... and also demonstrates some <u>skills with web technologies!</u>`,
-      FR: `Comme vous pouvre peux le voir, j'adore créer des petits mondes comme celui-ci, je trouve que ça <b>donne vie à mon code</b>.
+      FR: `Comme vous pouvez peux le voir, j'adore créer des petits mondes comme celui-ci, je trouve que ça <b>donne vie à mon code</b>.
       ... en plus de démontrer un certain <u>savoir faire avec les technologies web !</u>`,
     },
     isAnswer: false,
@@ -307,7 +307,7 @@ export const dialogues: Dialogue[] = [
       EN: `If you want to know more about my work, go talk to <b>Kuniku lom'vitae</b>, she is near the recruitment area.
       She is easy to recognize, there is a <b>star on the building</b>!`,
       FR: `Si vous voulez en savoir plus sur mon travail, je vous laisse aller parler avec <b>Kuniku lom'vitae</b>, elle se trouve près de l'espace recrutement.
-      C'est facile à reconnaitre, il y a une <b>étoile sur le batiment</b> !`,
+      C'est facile à reconnaître, il y a une <b>étoile sur le bâtiment</b> !`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -319,7 +319,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 4,
     content: {
       EN: `Otherwise, before being a developer I did <b>fundamental research in physiology and medicine</b> (neuroscience and pulmonology) at INSERM. That was actually my primary field of study.`,
-      FR: `Sinon, avant d'être développeur je faisait de la <b>recherche fondamentale en physiologie et médecine</b> (neurosciences et pneumologie) à l'INSERM. Ce sont d'ailleurs mes études primaires.`,
+      FR: `Sinon, avant d'être développeur je faisais de la <b>recherche fondamentale en physiologie et médecine</b> (neurosciences et pneumologie) à l'INSERM. Ce sont d'ailleurs mes études primaires.`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -331,7 +331,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 4,
     content: {
       EN: `I would also be happy to discuss medical topics or anything related to human physiology, and maybe explain why I wanted to <b>gain dual expertise in software development</b>.`,
-      FR: `Je serai d'ailleurs ravi de discuter avec vous de sujets médicaux ou en lien avec la physiologie humaine, et pourquoi pas vous expliquer ce souhait que j'ai eu d'acquiérir une <b>double compétence en développement informatique</b>.`,
+      FR: `Je serai d'ailleurs ravi de discuter avec vous de sujets médicaux ou en lien avec la physiologie humaine, et pourquoi pas vous expliquer ce souhait que j'ai eu d'acquérir une <b>double compétence en développement informatique</b>.`,
     },
     isAnswer: false,
     isIllustration: true,
@@ -411,8 +411,8 @@ export const dialogues: Dialogue[] = [
     content: {
       EN: `Enjoy your stay with us!
       Feel free to talk to the other inhabitants of the city!`,
-      FR: `Bon séjour parmis nous !
-      N'hésitez pas à aller discuter avec les autres habitants de la villes !`,
+      FR: `Bon séjour parmi nous !
+      N'hésitez pas à aller discuter avec les autres habitants de la ville !`,
     },
     isAnswer: false,
   },
