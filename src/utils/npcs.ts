@@ -26,8 +26,8 @@ export const npcs: NPC[] = [
   {
     id: 3,
     name: {
-      french: 'Anakin SkyWalker',
-      english: 'Anakin SkyWalker',
+      french: 'Bibi Hothèque',
+      english: 'Bibi Hothèque', //TODO
     },
     image: 'npc1.png',
     model: 'npc1-model.png',
@@ -37,12 +37,12 @@ export const npcs: NPC[] = [
   {
     id: 4,
     name: {
-      french: 'Presentation',
-      english: 'Presentation',
+      french: 'Amaury Guillin',
+      english: 'Amaury Guillin',
     },
     image: 'presentation.png',
     model: 'presentation-model.png',
-    position: 184,
+    position: 88,
     dialog: 'Je suis occupé.',
   },
   {
@@ -53,7 +53,7 @@ export const npcs: NPC[] = [
     },
     image: 'cv.png',
     model: 'cv-model.png',
-    position: 88,
+    position: 184,
     dialog: 'Je suis occupé.',
   },
 ]

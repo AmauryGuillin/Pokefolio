@@ -249,27 +249,175 @@ export const dialogues: Dialogue[] = [
   ===============================*/
 
   /*===============================
-    --  Autres NPC BEGIN--
+    --  Presentation BEGIN --
   ===============================*/
 
   {
-    id: 999,
-    npc_id: 3,
-    content: {
-      EN: 'This cook seems busy. he is surely trying to <b>cook</b> something wonderful.',
-      FR: `Ce cuisinier semble occupé. Peut-être est-il en train de <b>cook</b> quelque chose de bon ?`,
-    },
-    isAnswer: false,
-  },
-  {
-    id: 9999,
+    id: 20,
     npc_id: 4,
     content: {
-      EN: `My presentation isn't done already ! Go back later.`,
-      FR: `Ma présentation n'est pas encore terminée ! Reviens plus tard`,
+      EN: `none`,
+      FR: `Bonjour ! je m'appelle <b>Amaury</b>, je suis le maire de la ville. Laissez moi me présenter !`,
+    },
+    isAnswer: false,
+    next_id: 21,
+  },
+  {
+    id: 21,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Je suis <b>français</b> et basé en <b>île-de-france</b>, dans le sud de l'Essonne.`,
+    },
+    isAnswer: false,
+    isIllustration: true,
+    illustration: 'france.png',
+    next_id: 22,
+  },
+  {
+    id: 22,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `J'ai 27 ans et je travaille en tant qu'ingénieur logiciel pour Capgemini le jour...
+      et suis un développeur créatif la nuit !`,
+    },
+    isAnswer: false,
+    isIllustration: true,
+    illustration: 'code.gif',
+    next_id: 23,
+  },
+  {
+    id: 23,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Comme vous pouvre peux le voir, j'adore créer des petits mondes comme celui-ci, je trouve que ça donne vie à mon code.
+      ... en plus de démontrer un certain savoir faire avec les technologies web !`,
+    },
+    isAnswer: false,
+    next_id: 24,
+  },
+  {
+    id: 24,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Si vous voulez en savoir plus sur mon travail, je vous laisse aller parler à <b>NPJ CV</b>, elle se trouve près de l'espace recrutement.
+      C'est facile à reconnaitre, il y a une étoile sur le batiment !`,
+    },
+    isAnswer: false,
+    isIllustration: true,
+    illustration: 'cvgirl.png',
+    next_id: 25,
+  },
+  {
+    id: 25,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Sinon, avant d'être développeur je faisait de la recherche fondamentale en physiologie et médecine (neurosciences et pneumologie) à l'INSERM. Ce sont d'ailleurs mes études primaires.`,
+    },
+    isAnswer: false,
+    isIllustration: true,
+    illustration: 'neurosciences.jpg',
+    next_id: 26,
+  },
+  {
+    id: 26,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Je serai d'ailleurs ravi de discuter avec vous de sujets médicaux ou en lien avec la physiologie humaine, et pourquoi pas vous expliquer ce souhait que j'ai eu d'acquiérir une double compétence en développement informatique.`,
+    },
+    isAnswer: false,
+    isIllustration: true,
+    illustration: 'science.jpg',
+    next_id: 27,
+  },
+  {
+    id: 27,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Mais revenons-en au code !
+      Si vous voulez en savoir plus sur mes projets créatifs, allez discuter avec <b>May Projay</b> ! Elle sera ravie de vous les expliquer en détails.`,
+    },
+    isAnswer: false,
+    isIllustration: true,
+    illustration: 'mayprojey.png',
+    next_id: 28,
+  },
+  {
+    id: 28,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Enfin, si vous voulez accéder à ma bibliothèque personnelle... il vous suffit d'aller discuter avec <b>PNJ GIT</b>.`,
+    },
+    isAnswer: false,
+    isIllustration: true,
+    illustration: 'gitmaster.png',
+    next_id: 29,
+  },
+  {
+    id: 29,
+    npc_id: 4,
+    content: {
+      EN: `none`,
+      FR: `Je vous souhaite une agréable visite dans mon monde !`,
     },
     isAnswer: false,
   },
+
+  /*===============================
+    --  Presentation END --
+  ===============================*/
+
+  /*===============================
+    --  Bibi Hothèque BEGIN --
+  ===============================*/
+
+  {
+    id: 30,
+    npc_id: 3,
+    content: {
+      EN: 'none',
+      FR: `Bonjour, je suis Bibi Hothèque, responsable de la bibliothèque personnelle du maire.`,
+    },
+    isAnswer: false,
+    next_id: 31,
+  },
+  {
+    id: 31,
+    npc_id: 3,
+    content: {
+      EN: 'none',
+      FR: `Voulez-vous consulter la bibliothèque ?`,
+    },
+    isAnswer: true,
+    answer_id: 6,
+    next_id: 32,
+  },
+  {
+    id: 32,
+    npc_id: 3,
+    content: {
+      EN: 'none',
+      FR: `Bon séjour parmis nous !
+      N'hésitez pas à aller discuter avec les autres membres de la villes !`,
+    },
+    isAnswer: false,
+  },
+
+  /*===============================
+    --  Bibi Hothèque END --
+  ===============================*/
+
+  /*===============================
+    --  Autres NPC BEGIN --
+  ===============================*/
+
   {
     id: 99999,
     npc_id: 5,

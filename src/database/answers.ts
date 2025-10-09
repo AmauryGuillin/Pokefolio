@@ -62,6 +62,16 @@ export const answers: Answer[] = [
     },
     action: (choice?: string) => selectSoundChoice(choice),
   },
+  {
+    id: 6,
+    npc_id: 3,
+    dialogue_id: 31,
+    content: {
+      EN: ['Yes', 'No'],
+      FR: ['Oui', 'Non'],
+    },
+    action: (choice?: string) => continueToGitHub(choice),
+  },
 ]
 
 function selectUserLanguage(language: string | undefined) {
@@ -96,4 +106,11 @@ function selectSoundChoice(choice: string | undefined) {
   if (!choice) return
   if (choice === 'Oui' || choice === 'Yes') sessionStorage.setItem('Sound', 'true')
   if (choice === 'Non' || choice === 'No') sessionStorage.setItem('Sound', 'false')
+}
+
+function continueToGitHub(choice: string | undefined) {
+  if (!choice) return
+  if (choice === 'Yes' || choice === 'Oui') {
+    window.open('https://github.com/AmauryGuillin/')
+  }
 }
