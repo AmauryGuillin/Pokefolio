@@ -12,7 +12,9 @@ const props = defineProps<{
 
 const hover = ref(false)
 const npcName =
-  localStorage.getItem('UserLanguage') === 'French' ? props.npc.name.french : props.npc.name.english
+  sessionStorage.getItem('UserLanguage') === 'French'
+    ? props.npc.name.french
+    : props.npc.name.english
 </script>
 
 <template>
