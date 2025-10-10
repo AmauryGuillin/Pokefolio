@@ -185,6 +185,7 @@ const currentDialogue = ref<Dialogue | null>(null)
 const currentDisplay = ref<string | null | undefined>(null)
 const currentAnswer = ref<Answer | null>(null)
 const currentDisplayAnswer = ref<[string, string] | null | undefined>(null)
+const mayorDialogueDone = ref<boolean>(false)
 
 function closeNpcDialogBox() {
   inDialog.value = false
@@ -195,6 +196,9 @@ function closeNpcDialogBox() {
 async function launchDialog(targetPosition: number) {
   let currentNpc = npcs.find((n) => n.position === targetPosition)
   if (currentNpc) {
+    if (currentNpc.id === 4 && !mayorDialogueDone.value) {
+      mayorDialogueDone.value = true
+    }
     playDialogueSound()
     inDialog.value = true
     curretNpcName.value = getNPCNameByLanguage(currentNpc)
@@ -266,7 +270,13 @@ function next() {
 
       <!-- NPCs -->
       <div v-for="(npc, index) in npcs" :key="index" class="flex justify-center items-center">
-        <Npc :npc="npc" :cell="cell" :cell-height="cellHeight" :cell-width="cellWidth" />
+        <Npc
+          :npc="npc"
+          :cell="cell"
+          :cell-height="cellHeight"
+          :cell-width="cellWidth"
+          :mayor-done="mayorDialogueDone"
+        />
       </div>
 
       <!-- Obstacles -->

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { NPC } from '@/utils/npc'
 import { getImage } from '@/utils/utils'
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const props = defineProps<{
   npc: NPC
   cell: number
   cellWidth: number
   cellHeight: number
+  mayorDone: boolean
 }>()
 
 const hover = ref(false)
@@ -31,9 +32,15 @@ const npcName =
   >
     <div
       v-if="hover"
-      class="absolute -top-7 bg-black/70 font-bold p-2 whitespace-nowrap overflow-visible z-10"
+      class="absolute -top-7 left-[50%] translate-x-[-50%] bg-black/70 font-bold p-2 whitespace-nowrap overflow-visible z-10"
     >
       {{ npcName }}
+    </div>
+    <div
+      v-if="npc.id === 4 && !hover && !mayorDone"
+      class="absolute -top-8 left-[53%] translate-x-[-50%] font-bold p-2 whitespace-nowrap overflow-visible z-10 text-red-500 animate-bounce text-xl"
+    >
+      <span>!</span>
     </div>
   </div>
 </template>
