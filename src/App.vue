@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/sonner'
 import 'vue-sonner/style.css'
 import { useWindowSize } from '@vueuse/core'
 import { ref, watch } from 'vue'
+import SmallScreens from './components/SmallScreens.vue'
 
 const { width, height } = useWindowSize()
 const isScreenLargeEnough = ref<boolean>(true)
@@ -25,9 +26,7 @@ watch(
     <Toaster position="top-center" richColors />
     <RouterView />
   </div>
-  <div v-else class="flex justify-center items-center h-screen bg-gray-800">
-    <p class="bg-black/75 text-white font-bold p-2">
-      For an optimal experience, please use a bigger screen.
-    </p>
+  <div v-else>
+    <SmallScreens />
   </div>
 </template>
