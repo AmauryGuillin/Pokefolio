@@ -8,8 +8,8 @@ import { ref, watch } from 'vue'
 const { width, height } = useWindowSize()
 const isScreenLargeEnough = ref<boolean>(true)
 
-const minWidth = 900
-const minHeight = 600
+const minWidth = 1080
+const minHeight = 650
 
 watch(
   [width, height],
