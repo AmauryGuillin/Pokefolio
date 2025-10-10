@@ -32,13 +32,13 @@ const npcName =
   >
     <div
       v-if="hover"
-      class="absolute -top-7 left-[50%] translate-x-[-50%] bg-black/70 font-bold p-2 whitespace-nowrap overflow-visible z-10"
+      class="absolute -top-7 left-[50%] translate-x-[-50%] bg-black/70 font-bold p-2 whitespace-nowrap overflow-visible z-20"
     >
       {{ npcName }}
     </div>
     <div
-      v-if="npc.id === 4 && !hover && !mayorDone"
-      class="absolute -top-8 left-[53%] translate-x-[-50%] font-bold p-2 whitespace-nowrap overflow-visible z-10 text-red-500 animate-bounce text-xl"
+      v-if="npc.id === 4 && !mayorDone"
+      class="absolute -top-10 left-[53%] translate-x-[-50%] p-2 z-10 text-[#fbff00] animate-bounce xl:text-xl 2xl:text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
     >
       <span>!</span>
     </div>
