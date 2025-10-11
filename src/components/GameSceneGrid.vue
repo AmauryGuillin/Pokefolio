@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { calculatePath } from '@/utils/pathFinding'
-import { useWindowSize } from '@vueuse/core'
+import { useElementSize } from '@vueuse/core'
 import { ref, computed, onMounted } from 'vue'
 import Player from './Player.vue'
 import Obstacle from './Obstacle.vue'
@@ -26,7 +26,7 @@ import { playDialogueSound, playTownMusic } from '@/utils/music'
 /*
     Dev tools
 */
-const enableDevTools = false
+const enableDevTools = true
 const showObstacles = ref(false)
 const showCellNumber = ref(false)
 const showPath = ref(false)
@@ -93,7 +93,8 @@ onMounted(async () => {
 /*
     Grid management
 */
-const { width, height } = useWindowSize()
+const gameContainer = ref<HTMLDivElement | null>(null)
+const { width, height } = useElementSize(gameContainer)
 const numRows = 15
 const numCols = 20
 
@@ -166,7 +167,7 @@ async function changePlayerPosition(targetPosition: number) {
   if (npcSelected) {
     launchDialog(targetPosition)
     if (playerImage.value.includes('animated')) {
-      let tmp = playerImage.value.replace('animated', 'idle')
+      const tmp = playerImage.value.replace('animated', 'idle')
       playerImage.value = tmp.replace('.gif', '.png')
     }
     return
@@ -194,7 +195,7 @@ function closeNpcDialogBox() {
 }
 
 async function launchDialog(targetPosition: number) {
-  let currentNpc = npcs.find((n) => n.position === targetPosition)
+  const currentNpc = npcs.find((n) => n.position === targetPosition)
   if (currentNpc) {
     if (currentNpc.id === 4 && !mayorDialogueDone.value) {
       mayorDialogueDone.value = true
@@ -247,8 +248,8 @@ function next() {
   </div>
   <div
     v-else
-    ref="el"
-    class="h-screen w-full relative grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat bg-center bg-cover font-(family-name:--font-game)"
+    ref="gameContainer"
+    class="relative bg-cover mx-auto aspect-video h-full grid bg-[url(../assets/maps/DefaultMap.png)] bg-no-repeat font-(family-name:--font-game)"
     :style="`grid-template-rows: repeat(${gridSize.rows}, ${cellHeight}px); grid-template-columns: repeat(${gridSize.cols}, ${cellWidth}px);`"
   >
     <div v-if="enableDevTools" class="w-full z-50 absolute flex gap-2">
@@ -315,6 +316,8 @@ function next() {
       :from-intro="false"
       :is-illustration="currentDialogue.isIllustration"
       :illustration="currentDialogue.illustration"
+      :grid-width="width"
+      :grid-height="height"
       @click="next()"
     />
 

@@ -15,6 +15,7 @@ import {
   getTextToDisplayByLanguage,
 } from '@/utils/language'
 import { playDialogueSound } from '@/utils/music'
+import { useWindowSize } from '@vueuse/core'
 
 const router = useRouter()
 const npc = ref<NPC>()
@@ -47,6 +48,8 @@ function loadDialog() {
   currentDisplay.value = getTextToDisplayByLanguage(currentDialogue.value)
   currentAnswer.value = getNPCDialogueAnswer(currentDialogue.value)
 }
+
+const { width, height } = useWindowSize()
 
 onMounted(() => {
   npc.value = npcs.find((npc) => npc.id === 1)
@@ -81,6 +84,8 @@ onMounted(() => {
         :answers="currentDisplayAnswer"
         :action="currentAnswer?.action"
         :from-intro="true"
+        :grid-width="width"
+        :grid-height="height"
         @click="next()"
       />
     </div>
