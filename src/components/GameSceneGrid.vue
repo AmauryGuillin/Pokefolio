@@ -26,7 +26,7 @@ import { playDialogueSound, playTownMusic } from '@/utils/music'
 /*
     Dev tools
 */
-const enableDevTools = true
+const enableDevTools = false
 const showObstacles = ref(false)
 const showCellNumber = ref(false)
 const showPath = ref(false)
@@ -238,7 +238,7 @@ function next() {
 <template>
   <div
     v-if="!assetsLoaded"
-    class="flex items-center justify-center flex-col gap-5 h-screen bg-[url(../assets/loading/loading_screen2.jpg)] bg-no-repeat bg-center bg-cover"
+    class="flex items-center justify-center flex-col gap-5 h-screen bg-[url(../assets/loading/loading_screen2.jpg)] bg-no-repeat bg-center bg-contain"
   >
     <div
       class="bg-black/50 font-bold text-2xl flex justify-center items-center gap-3 flex-col rounded-sm p-2"
