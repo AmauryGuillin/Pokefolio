@@ -82,7 +82,7 @@ watch(
       <div
         class="relative w-full h-full rounded-lg overflow-hidden shadow-lg border-8 border-gray-500 bg-white"
       >
-        <div class="text-black w-full h-full grid grid-cols-2 text-xl justify-center items-center">
+        <div class="text-black w-full h-full grid grid-cols-2 text-md justify-center items-center">
           <div v-if="answers" class="flex flex-col gap-4 items-center justify-center mt-4 ml-10">
             <div
               @click="action?.(answers[0])"
