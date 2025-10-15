@@ -155,7 +155,7 @@ export const dialogues: Dialogue[] = [
       <b>1)</b> A dedicated website with a leaderboard to compare yourself with other players
       <b>2)</b> The game itself.`,
       FR: `Le jeu contient
-      <b>1)</b> Un site dédié avec un classement se comparer aux autres joueurs
+      <b>1)</b> Un site dédié avec un classement pour se comparer aux autres joueurs.
       <b>2)</b> Le jeu en lui-même.`,
     },
     isAnswer: false,
@@ -294,7 +294,7 @@ export const dialogues: Dialogue[] = [
     content: {
       EN: `As you can see, I love creating little worlds like this one, I think it <b>brings my code to life</b>.
       ... and also demonstrates some <u>skills with web technologies!</u>`,
-      FR: `Comme vous pouvez peux le voir, j'adore créer des petits mondes comme celui-ci, je trouve que ça <b>donne vie à mon code</b>.
+      FR: `Comme vous pouvez le voir, j'adore créer des petits mondes comme celui-ci, je trouve que ça <b>donne vie à mon code</b>.
       ... en plus de démontrer un certain <u>savoir faire avec les technologies web !</u>`,
     },
     isAnswer: false,
