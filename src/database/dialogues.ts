@@ -440,7 +440,7 @@ export const dialogues: Dialogue[] = [
     npc_id: 5,
     content: {
       EN: `I mainly take care of managing his <b>professional career</b>.`,
-      FR: `Je m'occupe principalement de la gestion de sa <b>carrière profesionnelle</b>.`,
+      FR: `Je m'occupe principalement de la gestion de sa <b>carrière professionnelle</b>.`,
     },
     isAnswer: false,
     next_id: 35,
