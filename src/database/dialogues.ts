@@ -12,6 +12,11 @@ export type Dialogue = {
   illustration?: string | undefined
 }
 
+const currentYear = new Date().getFullYear()
+const dateOfBirth = new Date('Febuary 10, 1998 00:00:00')
+dateOfBirth.setFullYear(1998)
+const age = currentYear - dateOfBirth.getFullYear()
+
 export const dialogues: Dialogue[] = [
   /*===============================
     --  Professor Oak BEGIN --
@@ -278,9 +283,9 @@ export const dialogues: Dialogue[] = [
     id: 22,
     npc_id: 4,
     content: {
-      EN: `I am <b>27 years old</b> and I work as a <b>software engineer</b> for Capgemini during the day...
+      EN: `I am <b>${age} years old</b> and I work as a <b>software engineer</b> for Capgemini during the day...
       and I am a <b>creative developer</b> at night!`,
-      FR: `J'ai <b>27 ans</b> et je travaille en tant qu'<b>ingénieur logiciel</b> pour Capgemini le jour...
+      FR: `J'ai <b>${age} ans</b> et je travaille en tant qu'<b>ingénieur logiciel</b> pour Capgemini le jour...
       et suis un <b>développeur créatif</b> la nuit !`,
     },
     isAnswer: false,
