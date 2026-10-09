@@ -128,7 +128,7 @@ function continueToGitHub(choice: string | undefined) {
 function continueToResume(choice: string | undefined) {
   if (!choice) return
   if (choice === 'Yes' || choice === 'Oui') {
-    const pdfUrl = new URL('@/assets/cv/Amaury_Guillin_2025.pdf', import.meta.url).href
+    const pdfUrl = new URL('@/assets/cv/Amaury_Guillin_cv.pdf', import.meta.url).href
     window.open(pdfUrl, '_blank')
   }
 }
